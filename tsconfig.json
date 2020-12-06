@@ -1,0 +1,36 @@
+{
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as our --compilerOptions flag and our TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs",
+      "noImplicitAny": false,
+      "esModuleInterop": true,
+      "types": [
+        "webpack"
+      ]
+    },
+    "include": [
+      "./scripts/**/*.ts",
+      "./src/pages/**/*.ts",
+      "./src/templates/**/*.ts",
+      "./src/server-bundle.ts"
+    ]
+  },
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "esModuleInterop": true
+  },
+  "include": [
+    "./src/*.ts",
+    "./src/components/**/*.ts"
+  ],
+  "exclude": [
+    "./src/server-bundle.ts"
+  ]
+}
