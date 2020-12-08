@@ -1,4 +1,4 @@
-import { AppTemplateProps } from '../../App';
+import { AppTemplateProps } from '../../App.template';
 
 export const data = (): AppTemplateProps => ({
   layout: {

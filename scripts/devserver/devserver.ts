@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import webpack from 'webpack';
+import { paths } from '../../config/paths';
 import { getAppTemplate, getPageData } from './getServerBundle';
 
 const middleware = require('webpack-dev-middleware');
@@ -9,7 +10,7 @@ const express = require('express');
 
 const app = express();
 
-const compiler = webpack(require(resolve(__dirname, '../../webpack.config.js')));
+const compiler = webpack(require(paths.webpackClientConfig));
 
 // const Mod = require('module');
 // const req = Mod.prototype.require;

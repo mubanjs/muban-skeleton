@@ -71,5 +71,7 @@ export async function getPageData(pagePath: string): Promise<Record<string, any>
 export async function getAppTemplate(pageData): Promise<string> {
   await waitForCompile();
 
+  console.log('templateFile', templateFile);
+
   return templateFile.appTemplate(pageData)
 }

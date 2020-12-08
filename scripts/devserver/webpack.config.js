@@ -7,6 +7,7 @@ module.exports = {
   mode: 'development',
   entry: paths.serverBundleEntry,
   output: {
+    publicPath: '',
     globalObject: 'this',
     path: paths.serverBundleOutputDir,
     filename: '[name].js',

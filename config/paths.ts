@@ -11,6 +11,7 @@ export const paths = {
   serverBundleEntry: path.resolve(srcPath, './server-bundle.ts'),
   distPath,
   distSitePath,
+  webpackClientConfig: path.resolve(projectDir, './config/webpack.config.ts'),
   webpackServerConfig: path.resolve(projectDir, './scripts/devserver/webpack.config.js'),
   serverBundleOutputDir: path.resolve(projectDir, './scripts/devserver/output'),
   serverBundleOutputEntry: path.resolve(projectDir, './scripts/devserver/output/main.js'),

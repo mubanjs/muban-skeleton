@@ -4,7 +4,7 @@ context.keys().forEach(key => {
   pages[/\/(.*)\.ts/gi.exec(key)[1]] = context(key);
 });
 
-const appTemplate = require('./App').appTemplate;
+const appTemplate = require('./App.template').appTemplate;
 
 module.exports = {
   appTemplate,
