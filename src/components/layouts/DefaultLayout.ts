@@ -7,7 +7,7 @@ export const LayoutDefault = defineComponent({
   components: [BlockRenderer],
   setup() {
     return [];
-  }
-})
+  },
+});
 
 export const lazy = supportLazy(LayoutDefault);

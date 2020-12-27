@@ -8,18 +8,20 @@ import type { LayoutDefaultTemplateProps } from './components/layouts/DefaultLay
 import { LayoutDefault } from './components/layouts/DefaultLayout';
 import { renderLazyComponentTemplate } from './utils/createComponentRenderer';
 
-
 export type AppTemplateProps = {
   layout:
-    | { name: typeof LayoutDefault.displayName, props: LayoutDefaultTemplateProps }
-    | { name: typeof LayoutCustom.displayName, props: LayoutCustomTemplateProps }
+    | { name: typeof LayoutDefault.displayName; props: LayoutDefaultTemplateProps }
+    | { name: typeof LayoutCustom.displayName; props: LayoutCustomTemplateProps };
 };
 
 export function appTemplate({ layout }: AppTemplateProps): string {
   return html`<div data-component=${App.displayName}>
-    ${renderLazyComponentTemplate({
-      [LayoutDefault.displayName]: layoutDefaultTemplate,
-      [LayoutCustom.displayName]: layoutCustomTemplate,
-    }, { component: layout })}
+    ${renderLazyComponentTemplate(
+      {
+        [LayoutDefault.displayName]: layoutDefaultTemplate,
+        [LayoutCustom.displayName]: layoutCustomTemplate,
+      },
+      { component: layout },
+    )}
   </div>`;
 }
