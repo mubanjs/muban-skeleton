@@ -6,15 +6,16 @@ import { toggleExpandTemplate } from '../atoms/toggle-expand/ToggleExpand.templa
 import { ToggleExpand } from '../atoms/toggle-expand/ToggleExpand';
 
 export type BlockRendererTemplateProps = {
-  blocks: Array<
-    | { name: typeof ToggleExpand.displayName, props: ToggleExpandProps }
-    >;
+  blocks: Array<{ name: typeof ToggleExpand.displayName; props: ToggleExpandProps }>;
 };
 
 export function blockRendererTemplate({ blocks }: BlockRendererTemplateProps): string {
   return html`<div data-component="block-renderer">
-    ${renderLazyComponentTemplate({
-      [ToggleExpand.displayName]: toggleExpandTemplate
-    }, { components: blocks })}
+    ${renderLazyComponentTemplate(
+      {
+        [ToggleExpand.displayName]: toggleExpandTemplate,
+      },
+      { components: blocks },
+    )}
   </div>`;
 }

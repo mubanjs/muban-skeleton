@@ -1,7 +1,6 @@
 import { html } from '@muban/muban';
 import { LayoutCustom } from './CustomLayout';
 
-
 export type LayoutCustomTemplateProps = { message: string };
 
 export function layoutCustomTemplate({ message }: LayoutCustomTemplateProps): string {

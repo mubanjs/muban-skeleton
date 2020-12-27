@@ -1,5 +1,8 @@
 import { html } from '@muban/muban';
-import { blockRendererTemplate, BlockRendererTemplateProps } from '../block-renderer/BlockRenderer.template';
+import {
+  blockRendererTemplate,
+  BlockRendererTemplateProps,
+} from '../block-renderer/BlockRenderer.template';
 import { LayoutDefault } from './DefaultLayout';
 
 export type LayoutDefaultTemplateProps = BlockRendererTemplateProps;

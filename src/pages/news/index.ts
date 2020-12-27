@@ -8,12 +8,12 @@ export const data = (): AppTemplateProps => ({
         {
           name: 'toggle-expand',
           props: {
-            isExpanded: false
-          }
-        }
-      ]
-    }
-  }
+            isExpanded: false,
+          },
+        },
+      ],
+    },
+  },
 });
 
 // https://github.com/nfl/react-helmet
