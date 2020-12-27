@@ -1,5 +1,6 @@
-import { readFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
+import { createMockMiddleWare } from '@mediamonks/monck';
+import { readFileSync } from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import { paths } from '../../config/paths';
 import { getAppTemplate, getPageData } from './getServerBundle';
@@ -35,6 +36,9 @@ app.use(
   })
 );
 
+app.use('/api/', createMockMiddleWare(path.resolve(paths.projectDir, 'mocks')));
+app.use('/api/', (req, res) => res.sendStatus(404));
+
 app.use('/favicon.ico', (req, res) => {
   res.send('df');
 });
@@ -46,7 +50,7 @@ app.use('/', async (req, res) => {
   const templateResult = await getAppTemplate(pageData);
 
   res.send(
-    readFileSync(resolve(__dirname, './index.html'), 'utf-8')
+    readFileSync(path.resolve(__dirname, './index.html'), 'utf-8')
       .replace('{{content}}', templateResult)
   );
 });
