@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { html } from '@muban/muban';
-import { templateComponentFactory } from '@muban/muban/lib/utils/template/templateComponentFactory';
+import { templateComponentFactory } from '@muban/muban/dist/esm/lib/template/templateComponentFactory';
 import { buttonTemplate } from '../button/Button.template';
 
 import './toggle-expand.scss';

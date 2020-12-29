@@ -8,7 +8,6 @@ import { getAppTemplate, getPageData } from './getServerBundle';
 const middleware = require('webpack-dev-middleware');
 const express = require('express');
 
-
 const app = express();
 
 const compiler = webpack(require(paths.webpackClientConfig));
@@ -33,7 +32,7 @@ function requireUncached(module) {
 app.use(
   middleware(compiler, {
     // webpack-dev-middleware options
-  })
+  }),
 );
 
 app.use('/api/', createMockMiddleWare(path.resolve(paths.projectDir, 'mocks')));
@@ -50,9 +49,15 @@ app.use('/', async (req, res) => {
   const templateResult = await getAppTemplate(pageData);
 
   res.send(
-    readFileSync(path.resolve(__dirname, './index.html'), 'utf-8')
-      .replace('{{content}}', templateResult)
+    readFileSync(path.resolve(__dirname, './index.html'), 'utf-8').replace(
+      '{{content}}',
+      templateResult,
+    ),
   );
 });
 
-app.listen(9000, () => console.log('Example app listening on port 9000!'));
+app.listen(9000, () => {
+  console.log('');
+  console.log('Your development server will be available on http://localhost:9000 !');
+  console.log('');
+});

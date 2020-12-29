@@ -1,4 +1,7 @@
-import { mount } from '@muban/muban';
+import './styles/main.scss';
+
+import { createApp } from '@muban/muban';
 import { App } from './App';
 
-mount(App, document.getElementById('app'));
+const app = createApp(App);
+app.mount(document.getElementById('app'));

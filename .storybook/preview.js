@@ -1,7 +1,8 @@
+import '../src/styles/main.scss';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
+  actions: { argTypesRegex: '^on[A-Z].*' },
+};
 
 // const sprite = document.createElement('img');
 // sprite.src = require('bootstrap-icons/bootstrap-icons.svg');

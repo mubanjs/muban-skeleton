@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { defineComponent, Ref, ref, propType, computed, bind } from '@muban/muban';
-import { supportLazy } from '@muban/muban/lib/utils/lazy';
+import { supportLazy } from '@muban/muban/dist/esm/lib/api/apiLazy';
 import { isBoolean, optional } from 'isntnt';
 
 import './toggle-expand.scss';

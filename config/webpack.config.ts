@@ -49,7 +49,7 @@ module.exports = {
 
   plugins: [
     new webpack.ProgressPlugin(),
-    mode === 'production' ? new MiniCssExtractPlugin({ filename:'main.[chunkhash].css' }) : null,
+    mode === 'production' ? new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' }) : null,
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
@@ -68,32 +68,35 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         loader: 'ts-loader',
         include: [paths.srcPath],
-        exclude: [/node_modules/]
+        exclude: [/node_modules/],
       },
       {
         test: /.(scss|css)$/,
 
         use: [
-          mode === 'production' ? { loader: MiniCssExtractPlugin.loader } : { loader: "style-loader" },
+          mode === 'production'
+            ? { loader: MiniCssExtractPlugin.loader }
+            : { loader: 'style-loader' },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }
-    ]
+              additionalData: '@import "/src/styles/_global.scss";',
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
 
   optimization: {
@@ -105,15 +108,15 @@ module.exports = {
       cacheGroups: {
         vendors: {
           priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
+          test: /[\\/]node_modules[\\/]/,
+        },
       },
 
       chunks: 'async',
       minChunks: 1,
       minSize: 30000,
-      name: false
-    }
+      name: false,
+    },
   },
   devtool: mode === 'production' ? false : 'eval-cheap-module-source-map', // cheap-source-map
 };

@@ -9,6 +9,7 @@ const https = require('https');
 const http = require('http');
 const compression = require('compression');
 const pem = require('pem');
+const { paths } = require('../config/paths');
 
 const config = {
   devServer: {
@@ -17,15 +18,15 @@ const config = {
     autoOpenBrowser: true,
   },
   useHttps: false,
-  buildPath: path.resolve(__dirname, '../dist')
-}
+  buildPath: paths.distSitePath,
+};
 
 let started = false;
 function start() {
   if (started) return;
   started = true;
 
-  module.exports = detectPort(config.devServer.port).then(port => {
+  module.exports = detectPort(config.devServer.port).then((port) => {
     process.env.PORT = port;
 
     const server = express();
@@ -35,11 +36,11 @@ function start() {
     // server.use(require('connect-history-api-fallback')());
     server.use(compression());
 
-    server.use('/', express.static(root), serveIndex(root, {icons: true, view: 'details' }));
+    server.use('/', express.static(root), serveIndex(root, { icons: true, view: 'details' }));
 
     const uri = `${config.devServer.useHttps ? 'https' : 'http'}://localhost:${port}`;
 
-    const onServerRunning = function(err) {
+    const onServerRunning = function (err) {
       if (err) {
         console.log(err);
         return;
@@ -53,7 +54,7 @@ function start() {
     };
 
     if (config.useHttps) {
-      pem.createCertificate({ days: 1, selfSigned: true }, function(err, keys) {
+      pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
         if (err) {
           throw err;
         }
