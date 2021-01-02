@@ -1,8 +1,25 @@
 [data-component="heading"] {
-  &.h1 {}
-  &.h2 {}
-  &.h3 {}
-  &.h4 {}
-  &.h5 {}
-  &.h6 {}
+  &.h1 {
+    @include heading-01;
+  }
+
+  &.h2 {
+    @include heading-02;
+  }
+
+  &.h3 {
+    @include heading-03;
+  }
+
+  &.h4 {
+    @include heading-04;
+  }
+
+  &.h5 {
+    @include heading-05;
+  }
+
+  &.h6 {
+    @include heading-06;
+  }
 }
