@@ -9,4 +9,8 @@ export type HeadingTemplateProps = {
 };
 
 export const headingTemplate = ({ as, style, copy }: HeadingTemplateProps): string =>
-  html`<${as} class="${style}"  data-component="heading=">${unsafeHTML(copy)}</${as}>`;
+  html`<${as} class="${style}" data-component="heading=">${unsafeHTML(copy)}</${as}>`;
+
+export const meta = {
+  template: headingTemplate,
+};
