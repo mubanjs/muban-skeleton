@@ -3,7 +3,6 @@ import { html } from '@muban/muban';
 import { templateComponentFactory } from '@muban/muban/dist/esm/lib/template/templateComponentFactory';
 import { buttonTemplate } from '../button/Button.template';
 
-import './toggle-expand.scss';
 import { ToggleExpand } from './ToggleExpand';
 
 const getButtonLabel = (isExpanded: boolean) => (isExpanded ? 'read less...' : 'read more...');
