@@ -13,7 +13,6 @@
     "include": [
       "./scripts/**/*.ts",
       "./src/pages/**/*.ts",
-      "./src/templates/**/*.ts",
       "./src/server-bundle.ts"
     ]
   },

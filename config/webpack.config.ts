@@ -86,7 +86,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              additionalData: '@import "/src/styles/_global.scss";',
+              additionalData: `@import "${paths.srcPath.substring(paths.projectDir.length).replace(/\\/g, '/')}/styles/_global.scss";`,
               sourceMap: true,
             },
           },
