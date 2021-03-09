@@ -1,8 +1,8 @@
-const pages = {};
 const context = require.context('./pages/', true, /\.ts$/);
-context.keys().forEach((key) => {
-  pages[/\/(.*)\.ts/gi.exec(key)[1]] = context(key);
-});
+const pages = context.keys().reduce((pages, key) => ({
+  ...pages,
+  [/\/(.*)\.ts/gi.exec(key)![1] as string]: context(key),
+}), {});
 
 const appTemplate = require('./App.template').appTemplate;
 

@@ -27,12 +27,12 @@ const watcher = serverCompiler.watch({}, (err, stats) => {
   // if (err) {
   //   return console.error('[Error]', err);
   // }
-  console.log(stats.toString({ colors: true}));
+  console.log(stats?.toString({ colors: true}));
   templateFile = getBundle();
   // console.log('templateFile', templateFile);
 })
 
-let templateFile = null;
+let templateFile: { pages: Record<string, any>, appTemplate: (pageData) => Promise<string>} | null = null;
 
 
 export function waitForCompile(): Promise<void> {
@@ -53,10 +53,10 @@ export async function getPageData(pagePath: string): Promise<Record<string, any>
   await waitForCompile();
 
   const getPage = (pageId) => {
-    if (templateFile.pages[pageId]) {
+    if (templateFile?.pages[pageId]) {
       return templateFile.pages[pageId];
     }
-    if (templateFile.pages['index']) {
+    if (templateFile?.pages['index']) {
       return templateFile.pages['index'];
     }
 
@@ -73,5 +73,5 @@ export async function getAppTemplate(pageData): Promise<string> {
 
   console.log('templateFile', templateFile);
 
-  return templateFile.appTemplate(pageData)
+  return templateFile!.appTemplate(pageData);
 }

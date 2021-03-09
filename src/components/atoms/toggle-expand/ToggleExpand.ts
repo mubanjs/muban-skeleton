@@ -37,4 +37,4 @@ export const ToggleExpand = defineComponent({
   },
 });
 
-export const lazy = supportLazy(ToggleExpand);
+export const lazy = supportLazy(ToggleExpand as any);

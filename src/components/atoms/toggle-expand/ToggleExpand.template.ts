@@ -12,7 +12,7 @@ export type ToggleExpandProps = {
 };
 
 export const toggleExpandTemplate = templateComponentFactory<ToggleExpandProps>({
-  component: ToggleExpand,
+  component: ToggleExpand as any,
   jsonProps(props) {
     return props;
   },
