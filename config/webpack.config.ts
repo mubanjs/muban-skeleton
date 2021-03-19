@@ -49,7 +49,7 @@ module.exports = {
 
   plugins: [
     new webpack.ProgressPlugin(),
-    mode === 'production' ? new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' }) : null,
+    mode === 'production' ? new MiniCssExtractPlugin({ filename: 'main.css' }) : null,
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
