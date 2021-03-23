@@ -226,44 +226,24 @@ module.exports = function () {
             },
             {
               test: /\.svg(\?.*)?$/,
-              oneOf: (() => {
-                const svgoLoaderConfig = {
-                  loader: require.resolve('svgo-loader'),
-                  options: {
-                    plugins: [
-                      { removeStyleElement: true },
-                      { removeComments: true },
-                      { removeDesc: true },
-                      { removeUselessDefs: true },
-                      { removeTitle: true },
-                      { removeMetadata: true },
-                      { removeComments: true },
-                      { cleanupIDs: { remove: true, prefix: '' } },
-                      { convertColors: { shorthex: false } },
-                    ],
+              // Using `?inline` in the asset request (e.g. `foo.svg?inline`) will inline the asset
+              // in the JS source. Otherwise it will be outputted as a separate file
+              oneOf: [
+                {
+                  resourceQuery: /inline/,
+                  type: 'asset/source',
+                  use: [require.resolve('svgo-loader')],
+                },
+                {
+                  type: 'asset/resource',
+                  generator: {
+                    filename: `static/svg/[name]${
+                      isEnvDevelopment ? '' : '.[contenthash:8]'
+                    }[ext][query]`,
                   },
-                };
-
-                return [
-                  // Using `?inline` in the asset request (e.g. `foo.svg?inline`) will inline the asset
-                  // in the JS source. Otherwise it will be outputted as a separate file
-                  //
-                  {
-                    resourceQuery: /inline/,
-                    type: 'asset/source',
-                    use: [svgoLoaderConfig],
-                  },
-                  {
-                    type: 'asset/resource',
-                    generator: {
-                      filename: `static/svg/[name]${
-                        isEnvDevelopment ? '' : '.[contenthash:8]'
-                      }[ext][query]`,
-                    },
-                    use: [svgoLoaderConfig],
-                  },
-                ];
-              })(),
+                  use: [require.resolve('svgo-loader')],
+                },
+              ],
             },
             {
               test: /\.(eot|svg|ttf|woff2?)(\?.*)?$/,
