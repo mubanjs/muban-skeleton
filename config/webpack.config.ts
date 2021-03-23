@@ -447,13 +447,13 @@ module.exports = function () {
             priority: -10,
             test: /[\\/]node_modules[\\/]/,
           },
-          // Uncomment below to output all chunk in a single output file
-          // styles: {
-          //   name: 'styles',
-          //   type: 'css/mini-extract',
-          //   chunks: 'all',
-          //   enforce: true,
-          // },
+          // Generate a single css file from all css
+          styles: {
+            name: 'main',
+            type: 'css/mini-extract',
+            chunks: 'all',
+            enforce: true,
+          },
         },
 
         chunks: 'async',
