@@ -225,7 +225,7 @@ module.exports = function () {
               },
             },
             {
-              test: /\.svg$/,
+              test: /\.svg(\?.*)?$/,
               oneOf: (() => {
                 const svgoLoaderConfig = {
                   loader: require.resolve('svgo-loader'),
@@ -250,7 +250,7 @@ module.exports = function () {
                   //
                   {
                     resourceQuery: /inline/,
-                    type: 'asset/inline',
+                    type: 'asset/source',
                     use: [svgoLoaderConfig],
                   },
                   {
