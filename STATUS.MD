@@ -2,22 +2,21 @@
 
 ## Production build
 
-- bundle JS and CSS
-- support lazy loading / code splitting
-- exclude all templates - except the ones being actually used
-- 3 build types
-    - dist mode (single build, output on disk)
-    - watch mode (output on disk, but watch change for a quick rebuild)
-    - dev mode (run webpack dev server and serve files from memory, including HTMl generation)
-- export generated HTML pages
++ bundle JS and CSS
++ support lazy loading / code splitting
++ 3 build types
+    + dist mode (single build, output on disk)
+    + dev mode (run webpack dev server and serve files from memory, including HTMl generation)
+    / watch mode (output on disk, but watch change for a quick rebuild)
++ export generated HTML pages
 
+- exclude all templates - except the ones being actually used
 
 ### Dev mode
 
 + run express server to server HTML and js/css
 + output HTML from express, not from JS, to better simulate a built package
-
-/ integrate webpack-dev-middleware and webpack-hot-middleware
++ integrate webpack-dev-middleware and webpack-hot-middleware
 
 - implement live-reload for HTML reload
 - implement proper hot-reloading for JS components - or maybe just reload the page?
@@ -29,8 +28,6 @@
 + user can create their own layouts for other pages
 + each page can optionally specify to choose a custom layout to render
 + a layout or template decides what to render based on the provided data on the page
-
-
 
 ### Pages
 
@@ -47,15 +44,16 @@
 Both during dev mode, and when generating build pages, we need to know what Pages exist, and what to render.
 
 + when no "index" file on disk is present, render auto-index instead
++ also support pages in folders
 
-+ files on disk should be pages
+/ files on disk should be pages
     - urls should include .html
 
-- also support pages in folders
 - folder should redirect to index.html in the folder
 - make "router" available to templates?
 
 ### Theming
+
 - support for themes/styles/variables
 - make separate theme build
 - other exceptions per theme (html? js?)
@@ -64,10 +62,12 @@ Both during dev mode, and when generating build pages, we need to know what Page
 
 #### Optional
 
-- leave CSS bundled with JS files to reduce initial css load size
++ leave CSS bundled with JS files to reduce initial css load size
+
+/ API mocking
+
 - create auto-index page
 - export only JS / CSS solo
-- API mocking
-- typed API
+- typed API ??
 
 - check non-zero error codes on build

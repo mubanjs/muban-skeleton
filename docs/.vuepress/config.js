@@ -19,6 +19,8 @@ module.exports = {
         'pages',
         'scripts',
         'build-config',
+        'folders',
+        'assets',
       ],
 
       // fallback

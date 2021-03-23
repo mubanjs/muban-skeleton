@@ -1,4 +1,5 @@
 import { defineComponent, lazy } from '@muban/muban';
+import { ImageTest } from '../atoms/image-test/ImageTest';
 
 export const BlockRenderer = defineComponent({
   name: 'block-renderer',
@@ -7,6 +8,7 @@ export const BlockRenderer = defineComponent({
       'toggle-expand',
       () => import(/* webpackExports: "lazy" */ '../atoms/toggle-expand/ToggleExpand'),
     ),
+    ImageTest
   ],
   setup() {
     return [];

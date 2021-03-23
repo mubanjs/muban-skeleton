@@ -1,9 +1,6 @@
 /* eslint-disable react/jsx-key */
-import { html } from '@muban/muban';
-import { templateComponentFactory } from '@muban/muban/dist/esm/lib/template/templateComponentFactory';
+import { html, jsonScriptTemplate } from '@muban/muban/dist/esm/lib/template/mhtml';
 import { buttonTemplate } from '../button/Button.template';
-
-import { ToggleExpand } from './ToggleExpand';
 
 const getButtonLabel = (isExpanded: boolean) => (isExpanded ? 'read less...' : 'read more...');
 
@@ -11,17 +8,13 @@ export type ToggleExpandProps = {
   isExpanded?: boolean;
 };
 
-export const toggleExpandTemplate = templateComponentFactory<ToggleExpandProps>({
-  component: ToggleExpand,
-  jsonProps(props) {
-    return props;
-  },
-  children({ isExpanded = false }) {
-    return html`
+export function toggleExpandTemplate({ isExpanded = false }: ToggleExpandProps, ref) {
+               return html`<div data-component="toggle-expand" dat-ref=${ref}>
+      ${jsonScriptTemplate({ isExpanded })}
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consequatur cum laboriosam
-        voluptate voluptatibus. Alias aut autem eligendi perspiciatis provident quae quisquam
-        sapiente sequi, vero voluptatibus. Dolores dolorum exercitationem voluptate.
+        B Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consequatur cum
+        laboriosam voluptate voluptatibus. Alias aut autem eligendi perspiciatis provident quae
+        quisquam sapiente sequi, vero voluptatibus. Dolores dolorum exercitationem voluptate.
       </p>
       <p>${buttonTemplate({ label: getButtonLabel(isExpanded) }, 'expand-button')}</p>
       <p data-ref="expand-content">
@@ -30,6 +23,5 @@ export const toggleExpandTemplate = templateComponentFactory<ToggleExpandProps>(
         ipsam libero quae quas temporibus voluptas voluptates. Blanditiis consequatur deserunt
         facere!
       </p>
-    `;
-  },
-});
+    </div>`
+}

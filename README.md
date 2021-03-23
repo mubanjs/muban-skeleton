@@ -7,7 +7,7 @@
 Your goto script when running local development against local page templates with live and hot reloading when any of
 your code changes.
 
-- runs the code bundle with `webpack-dev-middleware`, hot-reloading your JS and CSS changes
+- runs the code bundle with `WebpackDevServer`, hot-reloading your JS and CSS changes
 - runs the server bundle to generate templates and serves them from express, live-reloading your HTML changes
 
 The dev server runs on `http://localhost:9000`.
@@ -18,6 +18,9 @@ Creates a distribution build that outputs the JS and CSS files. Used in CI to de
 
 Append `--watch` to the command to start this webpack in watch mode, enjoying super fast recompilations when your
 local files changes.
+
+When the `MUBAN_ANALYZE` environment variable is set, it will generate a bundle-analyzer output 
+report.
 
 ### `yarn build:preview`
 

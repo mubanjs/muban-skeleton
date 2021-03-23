@@ -79,7 +79,7 @@ files that are imported through components that are actually used.
 
 import { defineComponent } from '@muban/muban';
 
-import './my-component.scss';
+import './MyComponent.styles.scss';
 
 export const MyComponent = defineComponent({ ... });
 ```
@@ -200,11 +200,11 @@ only write JS Components and styles, and won't use storybook or the dev server a
 This file contains the styles that style the html for this component. Additionally, it can "override" styles from
 child components it knows it will include.
 
-It uses `snake-case` folder the filename to align with most css conventions. The component is scoped with its
-`data-component` attribute, which is required in the HTML for each component.
+It uses `PascalCase`, similar to the JS Component, and append `.styles` after it. The component is
+scoped with its `data-component` attribute, which is required in the HTML for each component.
 
 ```scss
-// my-component.scss
+// MyComponent.styles.scss
 
 [data-component="my-component"] {
   // styles

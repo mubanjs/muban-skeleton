@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { html } from '@muban/muban';
+import type { TemplateMap } from '@muban/muban';
+import { html } from '@muban/muban/dist/esm/lib/template/mhtml';
 import { renderLazyComponentTemplate } from '../../utils/createComponentRenderer';
-import type { ToggleExpandProps } from '../atoms/toggle-expand/ToggleExpand.template';
+import { imageTestTemplate } from '../atoms/image-test/ImageTest.template';
 import { toggleExpandTemplate } from '../atoms/toggle-expand/ToggleExpand.template';
-import { ToggleExpand } from '../atoms/toggle-expand/ToggleExpand';
+
+const componentMap = {
+  'toggle-expand': toggleExpandTemplate,
+  'image-test': imageTestTemplate,
+};
 
 export type BlockRendererTemplateProps = {
-  blocks: Array<{ name: typeof ToggleExpand.displayName; props: ToggleExpandProps }>;
+  blocks: Array<TemplateMap<typeof componentMap>>;
 };
 
 export function blockRendererTemplate({ blocks }: BlockRendererTemplateProps): string {
   return html`<div data-component="block-renderer">
-    ${renderLazyComponentTemplate(
-      {
-        [ToggleExpand.displayName]: toggleExpandTemplate,
-      },
-      { components: blocks },
-    )}
+    ${renderLazyComponentTemplate(componentMap, { components: blocks })}
   </div>`;
 }

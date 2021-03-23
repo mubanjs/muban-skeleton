@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# builds and deploys the vuepress docs
+
 # abort on errors
 set -e
 

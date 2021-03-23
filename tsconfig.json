@@ -17,16 +17,33 @@
     ]
   },
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
-    "module": "esnext",
     "target": "es5",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": true,
-    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "esModuleInterop": true
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "isolatedModules": false, // doesn't work with const enums
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "strict": true,
+    "importsNotUsedAsValues": "error",
+    "noImplicitAny": false,
+//    "baseUrl": "./src/",
+    "types": [
+      "@types/webpack-env"
+    ]
   },
   "include": [
     "./src/*.ts",
+    "./src/**/*.ts",
     "./src/components/**/*.ts"
   ],
   "exclude": [
