@@ -97,6 +97,7 @@ module.exports = function () {
         //   paths.packageJson,
         // ]),
       ],
+      modules: [paths.srcPath, 'node_modules'],
     },
     resolveLoader: {
       plugins: [
@@ -266,7 +267,7 @@ module.exports = function () {
             },
             {
               test: /\.(eot|svg|ttf|woff2?)(\?.*)?$/,
-              include: path.resolve(paths.webpackAssetPath, './fonts'),
+              include: paths.webpackAssetFonts,
               type: 'asset/resource',
               generator: {
                 filename: `static/fonts/[name]${
@@ -366,22 +367,29 @@ module.exports = function () {
             reportFilename: path.resolve(paths.distPath, './bundle-report.html'),
           })
         : null,
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: paths.publicAssetPath,
-            to: paths.distSitePath,
-            filter: (resourcePath) => !resourcePath.endsWith('readme.md'),
-          },
-          isPreview
+      (() => {
+        const patterns = [
+          fs.existsSync(paths.publicAssetPath)
+            ? {
+                from: paths.publicAssetPath,
+                to: paths.distSitePath,
+                filter: (resourcePath) => !resourcePath.endsWith('readme.md'),
+              }
+            : null,
+          isPreview && fs.existsSync(paths.pagesAssetPath)
             ? {
                 from: paths.pagesAssetPath,
                 to: path.resolve(paths.distSitePath, './static/'),
                 filter: (resourcePath) => !resourcePath.endsWith('readme.md'),
               }
             : null,
-        ].filter(Boolean),
-      }),
+        ].filter(Boolean);
+        return patterns.length > 0
+          ? new CopyWebpackPlugin({
+              patterns,
+            })
+          : null;
+      })(),
     ].filter(Boolean),
 
     optimization: {

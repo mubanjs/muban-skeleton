@@ -93,6 +93,7 @@ export function handleCompilerInfo(
           printInstructions('your website', urls, true);
           isFirstCompile = false;
         }
+        return;
       }
 
       // If errors exist, only show errors.

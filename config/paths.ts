@@ -33,6 +33,8 @@ export const paths = {
   devIndex: resolveProject('./scripts/devserver/index.html'),
   distIndex: resolveProject('./scripts/devserver/index.html'),
   webpackAssetPath: resolveSource('./assets'), // required through webpack
+  webpackAssetFonts: resolveSource('./fonts'), // required through webpack
+  webpackAssetImages: resolveSource('./images'), // required through webpack
   publicAssetPath: resolveSource('./public'), // CopyWebpackPlugin
   pagesAssetPath: resolveSource('./pages/static'), // Only Dev and Preview
   tsConfig: resolveProject('./tsconfig.json'),

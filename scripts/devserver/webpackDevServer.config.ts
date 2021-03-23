@@ -140,6 +140,7 @@ export function createDevServerConfig(proxy, allowedHost) {
         // them ourselves internally later
         if (!['', '.html'].includes(path.extname(req.path))) {
           res.sendStatus(404);
+          return;
         }
 
         console.log('[request]', req.path);

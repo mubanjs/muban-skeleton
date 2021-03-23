@@ -1,4 +1,5 @@
 const pages = {};
+
 // @ts-ignore
 const context = require.context('./pages/', true, /\.ts$/);
 context.keys().forEach((key) => {
