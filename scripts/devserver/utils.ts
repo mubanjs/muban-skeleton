@@ -5,6 +5,8 @@ import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlug
 import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
 import { formatWebpackMessages } from './formatWebpackMessages';
 
+const argv = require('yargs').argv;
+
 const isInteractive = process.stdout.isTTY;
 let isFirstCompile = true;
 
@@ -98,7 +100,7 @@ export function handleCompilerInfo(
 
       // If errors exist, only show errors.
       if (messages.errors.length) {
-        printErrors(name, messages);
+        printErrors(name, messages, stats);
         return;
       }
 
@@ -155,14 +157,19 @@ function printWarnings(name, messages: { warnings: any; errors: any }) {
   // );
 }
 
-function printErrors(name, messages: { warnings: any; errors: any }) {
-  // Only keep the first error. Others are often indicative
-  // of the same problem, but confuse the reader with noise.
-  if (messages.errors.length > 1) {
-    messages.errors.length = 1;
+function printErrors(name, messages: { warnings: any; errors: any }, stats: webpack.Stats) {
+  if (argv.verboseErrors) {
+    console.log(stats.toString({ all: false, errors: true, colors: true }));
+  } else {
+    // Only keep the first error. Others are often indicative
+    // of the same problem, but confuse the reader with noise.
+    if (messages.errors.length > 1) {
+      messages.errors.length = 1;
+    }
+    console.log(chalk.red(`[${name}] Failed to compile.\n`));
+    console.log(messages.errors.join('\n\n'));
+    console.log(chalk.cyan(`\nUse "--verbose-errors" to output more error details.\n`));
   }
-  console.log(chalk.red(`[${name}] Failed to compile.\n`));
-  console.log(messages.errors.join('\n\n'));
 }
 
 function printInstructions(appName, urls, useYarn) {
