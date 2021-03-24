@@ -1,4 +1,6 @@
-module.exports = {
+import { paths } from '../config/paths';
+
+export default {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     //   "@storybook/addon-links",
@@ -7,7 +9,12 @@ module.exports = {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
-          additionalData: '@import "/src/styles/_global.scss";',
+          additionalData: `
+            @import "~seng-scss";
+            @import "${paths.srcPath
+              .substring(paths.projectDir.length)
+              .replace(/\\/g, '/')}/styles/_global.scss";
+          `,
         },
       },
     },

@@ -1,10 +1,10 @@
-const paths = require('../config/paths');
+import { paths } from '../config/paths';
 
 /**
  * NOTE: Storybook still uses webpack 4, so might not be 1-on-1 compatible with
  * the project webpack config, which uses webpack 5!!
  */
-module.exports = ({ config }) => {
+export default ({ config }) => {
   // remove this rule that deals with svgs
   config.module.rules = config.module.rules.filter((rule) => !String(rule.test).includes('svg'));
   // add the rule back without the svg in it, jep, a bit hacky

@@ -202,9 +202,12 @@ module.exports = function () {
                 {
                   loader: require.resolve('sass-loader'),
                   options: {
-                    additionalData: `@import "~seng-scss"; @import "${paths.srcPath
-                      .substring(paths.projectDir.length)
-                      .replace(/\\/g, '/')}/styles/_global.scss";`,
+                    additionalData: `
+                      @import "~seng-scss";
+                      @import "${paths.srcPath
+                        .substring(paths.projectDir.length)
+                        .replace(/\\/g, '/')}/styles/_global.scss";
+                    `,
                     sourceMap: true,
                   },
                 },
