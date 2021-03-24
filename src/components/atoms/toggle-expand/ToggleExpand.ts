@@ -4,6 +4,7 @@ import { supportLazy } from '@muban/muban/dist/esm/lib/api/apiLazy';
 import { isBoolean, optional } from 'isntnt';
 
 import './toggle-expand.scss';
+import { CfA2Icon } from '../cf-a2-icon/CfA2Icon';
 
 export const useToggle = (
   initialValue: boolean,
@@ -17,6 +18,7 @@ const getButtonLabel = (isExpanded: boolean) => (isExpanded ? 'read less...' : '
 
 export const ToggleExpand = defineComponent({
   name: 'toggle-expand',
+  components: [CfA2Icon],
   props: {
     isExpanded: propType.boolean.validate(optional(isBoolean)),
   },
