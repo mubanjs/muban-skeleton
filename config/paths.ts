@@ -36,6 +36,7 @@ export const paths = {
   webpackAssetFonts: resolveSource('./assets/fonts'),
   webpackAssetImages: resolveSource('./assets/images'),
   publicAssetPath: resolveSource('./public'), // CopyWebpackPlugin
+  pagesPath: resolveSource('./pages'), // Only Dev and Preview
   pagesAssetPath: resolveSource('./pages/static'), // Only Dev and Preview
   tsConfig: resolveProject('./tsconfig.json'),
 };

@@ -8,8 +8,6 @@ import { paths } from '../config/paths';
 
 const COMPILE_IN_MEMORY = true;
 
-const pagesFolder = path.resolve(__dirname, '../src/pages');
-
 let outputFs;
 
 export function getCompiler(config) {
@@ -64,7 +62,7 @@ export function getBundleFile() {
 export function getAvailablePages(): Promise<Array<{ id: string; path: string }>> {
   return new Promise((resolve, reject) => {
     recursive(
-      pagesFolder,
+      paths.pagesPath,
       [
         // ignore any non-ts files (but allow folders to do recursion
         (file, stats) => !stats.isDirectory() && path.extname(file) !== '.ts',
@@ -75,8 +73,8 @@ export function getAvailablePages(): Promise<Array<{ id: string; path: string }>
         }
         const pages = files
           .map((f) => ({
-            id: path.relative(pagesFolder, f).replace(path.extname(f), ''),
-            path: f,
+            id: path.relative(paths.pagesPath, f).replace(path.extname(f), '').replace(/\\/g, '/'),
+            path: f.replace(/\\/g, '/'),
           }))
           .sort();
 
