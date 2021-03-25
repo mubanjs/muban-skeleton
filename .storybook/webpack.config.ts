@@ -1,10 +1,25 @@
+import { getClientEnvironment } from '../config/env';
 import { paths } from '../config/paths';
+
+// webpack 4 version of the plugin
+import webpack from '@storybook/core/node_modules/webpack';
+
+// We will provide `paths.publicUrlOrPath` to our app
+// as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+// Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
+// Get environment variables to inject into our app.
+const env = getClientEnvironment(paths.publicPath.slice(0, -1));
 
 /**
  * NOTE: Storybook still uses webpack 4, so might not be 1-on-1 compatible with
  * the project webpack config, which uses webpack 5!!
  */
 export default ({ config }) => {
+  // Add the src path so we can load the assets
+  config.resolve.modules = [paths.srcPath, ...config.resolve.modules];
+
+  config.plugins.push(new webpack.DefinePlugin(env.stringified));
+
   // remove this rule that deals with SVGs and media files
   config.module.rules = config.module.rules.filter(
     (rule) => !(String(rule.test).includes('svg') || String(rule.test).includes('mp4')),
@@ -30,9 +45,6 @@ export default ({ config }) => {
       esModule: false,
     },
   });
-
-  // Add the src path so we can load the assets
-  config.resolve.modules = [paths.srcPath, ...config.resolve.modules];
 
   // Add a loader for the svg's
   config.module.rules.push({
