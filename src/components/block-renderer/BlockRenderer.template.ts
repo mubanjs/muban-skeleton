@@ -2,12 +2,14 @@
 import type { TemplateMap } from '@muban/muban';
 import { html } from '@muban/muban/dist/esm/lib/template/mhtml';
 import { renderLazyComponentTemplate } from '../../utils/createComponentRenderer';
-import { imageTestTemplate } from '../atoms/image-test/ImageTest.template';
+import { imageTestTemplate } from '../image-test/ImageTest.template';
 import { toggleExpandTemplate } from '../atoms/toggle-expand/ToggleExpand.template';
+import { videoTestTemplate } from '../video-test/VideoTest.template';
 
 const componentMap = {
   'toggle-expand': toggleExpandTemplate,
   'image-test': imageTestTemplate,
+  'video-test': videoTestTemplate,
 };
 
 export type BlockRendererTemplateProps = {

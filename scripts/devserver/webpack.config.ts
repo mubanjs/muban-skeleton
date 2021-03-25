@@ -38,26 +38,30 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        loader: 'ts-loader',
-        include: [paths.srcPath],
-        exclude: [/node_modules/],
-      },
-      {
-        test: /.(scss|css|svg)$/,
-        use: 'null-loader',
-      },
-      {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 1 * 1024, // 1kb
+        oneOf: [
+          {
+            test: /\.(ts|tsx)$/,
+            loader: 'ts-loader',
+            include: [paths.srcPath],
+            exclude: [/node_modules/],
           },
-        },
-        generator: {
-          filename: `static/images/[name].[contenthash:8][ext][query]`,
-        },
+          {
+            test: /\.(png|jpe?g|gif|webp|mp4|webm)(\?.*)?$/,
+            type: 'asset/resource',
+            parser: {
+              dataUrlCondition: {
+                maxSize: 1 * 1024, // 1kb
+              },
+            },
+            generator: {
+              filename: `static/images/[name].[contenthash:8][ext][query]`,
+            },
+          },
+          {
+            exclude: [/\.(js|mjs|ts)$/, /\.html$/, /\.json$/],
+            use: 'null-loader',
+          },
+        ],
       },
     ],
   },

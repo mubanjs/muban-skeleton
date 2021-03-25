@@ -36,7 +36,8 @@
     "strict": true,
     "importsNotUsedAsValues": "error",
     "noImplicitAny": false,
-//    "baseUrl": "./src/",
+    "baseUrl": "./src/",
+    "resolveJsonModule": true,
     "types": [
       "@types/webpack-env"
     ]

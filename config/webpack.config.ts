@@ -228,6 +228,34 @@ module.exports = function () {
               },
             },
             {
+              test: /\.(mp4|webm)(\?.*)?$/,
+              type: 'asset',
+              parser: {
+                dataUrlCondition: {
+                  maxSize: 1 * 1024, // 1kb
+                },
+              },
+              generator: {
+                filename: `static/video/[name]${
+                  isEnvDevelopment ? '' : '.[contenthash:8]'
+                }[ext][query]`,
+              },
+            },
+            {
+              test: /\.(wav|mp3|m4a|aac|oga)(\?.*)?$/,
+              type: 'asset',
+              parser: {
+                dataUrlCondition: {
+                  maxSize: 1 * 1024, // 1kb
+                },
+              },
+              generator: {
+                filename: `static/audio/[name]${
+                  isEnvDevelopment ? '' : '.[contenthash:8]'
+                }[ext][query]`,
+              },
+            },
+            {
               test: /\.svg(\?.*)?$/,
               // Using `?inline` in the asset request (e.g. `foo.svg?inline`) will inline the asset
               // in the JS source. Otherwise it will be outputted as a separate file

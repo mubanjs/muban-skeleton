@@ -1,5 +1,5 @@
 import type { AppTemplateProps } from '../App.template';
-import { imageTestDefaultMockData } from '../components/atoms/image-test/ImageTest.mocks';
+import { imageTestDefaultMockData } from '../components/image-test/ImageTest.mocks';
 
 export const data = (): AppTemplateProps => ({
   layout: {

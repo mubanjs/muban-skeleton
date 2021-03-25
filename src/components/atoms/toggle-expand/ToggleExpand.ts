@@ -6,6 +6,10 @@ import { isBoolean, optional } from 'isntnt';
 import './toggle-expand.scss';
 import { CfA2Icon } from '../cf-a2-icon/CfA2Icon';
 
+import data from '../../../assets/json/test.json';
+
+console.log('json data test', data);
+
 export const useToggle = (
   initialValue: boolean,
 ): readonly [Ref<boolean>, (force?: boolean) => void] => {
