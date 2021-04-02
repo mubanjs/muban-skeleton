@@ -8,14 +8,14 @@
 // @remove-on-eject-end
 'use strict';
 
-import { readFileSync } from 'fs';
 import path from 'path';
+import { readFileSync } from 'fs';
+import { createMockMiddleWare } from '@mediamonks/monck';
 import ignoredFiles from 'react-dev-utils/ignoredFiles';
 import { paths } from '../../config/paths';
 import { getAsset, replaceTemplateVars } from '../utils';
 import { getHttpsConfig } from './getHttpsConfig';
 import { getAppTemplate, getPageData } from './getServerBundle';
-const fs = require('fs');
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
@@ -124,7 +124,8 @@ export function createDevServerConfig(proxy, allowedHost) {
       // }
     },
     after(app) {
-      // TODO: look up /static/ files from the memory outputfs from the template watch server
+      app.use('/api/', createMockMiddleWare(path.resolve(paths.projectDir, 'mocks')));
+      app.use('/api/', (req, res) => res.sendStatus(404));
 
       app.use('/', async (req, res) => {
         // proxy request to the memoryFs from the server compiler as if it is
