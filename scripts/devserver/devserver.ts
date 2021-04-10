@@ -1,7 +1,3 @@
-import { createMockMiddleWare } from '@mediamonks/monck';
-import { readFileSync } from 'fs';
-import getPort from 'get-port';
-import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { choosePort, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
@@ -9,23 +5,16 @@ import openBrowser from 'react-dev-utils/openBrowser';
 import clearConsole from 'react-dev-utils/clearConsole';
 import { paths } from '../../config/paths';
 import { getCompiler } from '../utils';
-import { getAppTemplate, getPageData, startWatcher } from './getServerBundle';
+import { startWatcher } from './getServerBundle';
 import chalk from 'chalk';
 import { handleCompilerInfo } from './utils';
 import { createDevServerConfig } from './webpackDevServer.config';
-
-const devMiddleware = require('webpack-dev-middleware');
-const express = require('express');
-
-const app = express();
 
 const isInteractive = process.stdout.isTTY;
 
 const clientConfig = require(paths.webpackClientConfig)();
 
-app.use('/api/', createMockMiddleWare(path.resolve(paths.projectDir, 'mocks')));
-app.use('/api/', (req, res) => res.sendStatus(404));
-
+// TODO: Muban favicon
 // app.use('/favicon.ico', (req, res) => {
 //   res.send('df');
 // });
