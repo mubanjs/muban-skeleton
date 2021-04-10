@@ -35,6 +35,13 @@ export const data = (): AppTemplateProps => ({
 });
 ```
 
+::: tip Ignoring files and folders
+Any file or folder in the `src/pages` folder starting with a `_` will be ignored when generating 
+page templates.
+So if you're looking to share some data or utilities only used for pages, you can prefix the file
+with a `_` and still have it located in the `src/pages` folder, without a page being created for it.
+:::
+
 ### Template
 
 For each page that we render, we start with the `appTemplate` - it also has a corresponding `App` component that will

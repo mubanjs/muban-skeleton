@@ -64,8 +64,15 @@ export function getAvailablePages(): Promise<Array<{ id: string; path: string }>
     recursive(
       paths.pagesPath,
       [
-        // ignore any non-ts files (but allow folders to do recursion
-        (file, stats) => !stats.isDirectory() && path.extname(file) !== '.ts',
+        // return true to ignore something
+        (fileOrFolderPath, stats) => {
+          return (
+            // ignore any non-ts files (but allow folders to do recursion)
+            (!stats.isDirectory() && path.extname(fileOrFolderPath) !== '.ts') ||
+            // ignore any file or folder that starts with an underscore
+            path.basename(fileOrFolderPath).startsWith('_')
+          );
+        },
       ],
       (err, files) => {
         if (err) {
