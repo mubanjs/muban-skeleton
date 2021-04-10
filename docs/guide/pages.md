@@ -113,3 +113,29 @@ export const App = defineComponent({
   }
 });
 ```
+
+## Dev Server
+
+The Dev Server makes these pages available in the browser in the following ways:
+
+### With the .html extension
+
+* `/index.html` loads `/src/pages/index.ts`
+* `/news.html` loads `/src/pages/news.ts`
+
+### Without the .html extension
+
+* `/` loads `/src/pages/index.ts`
+* `/news` loads `/src/pages/news.ts`
+
+### In folders
+
+* `/news/index.html` loads `/src/pages/news/index.ts`
+* `/news/overview.html` loads `/src/pages/news/overview.ts`
+* `/news` loads `/src/pages/news/index.ts`
+* `/news/overview` loads `/src/pages/news/overview.ts`
+
+Or including a trailing /
+
+* `/news/` loads `/src/pages/news/index.ts`
+* `/news/overview/` loads `/src/pages/news/overview.ts`

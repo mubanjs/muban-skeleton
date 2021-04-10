@@ -4,7 +4,7 @@ export const data = (): AppTemplateProps => ({
   layout: {
     name: 'layout-custom',
     props: {
-      message: 'News Index',
+      message: 'News Overview',
     },
   },
 });

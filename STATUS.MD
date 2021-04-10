@@ -50,10 +50,10 @@ Both during dev mode, and when generating build pages, we need to know what Page
 + when no "index" file on disk is present, render auto-index instead
 + also support pages in folders
 
-/ files on disk should be pages
-    - urls should include .html
++ files on disk should be pages
+  + urls should include .html
++ folder should redirect to index.html in the folder
 
-- folder should redirect to index.html in the folder
 - make "router" available to templates?
 
 ### Theming
