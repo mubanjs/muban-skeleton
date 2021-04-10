@@ -1,9 +1,10 @@
-import chalk from 'chalk';
-import { resolve } from 'path';
 import type webpack from 'webpack';
 import { getBundleFile } from '../utils';
 
-let templateFile: any = null;
+let templateFile: {
+  pages: Record<string, any>;
+  appTemplate: (pageData) => Promise<string>;
+} | null = null;
 let watcher: webpack.Watching;
 
 export function startWatcher(compiler: webpack.Compiler): webpack.Watching {
@@ -66,7 +67,7 @@ export function getPageFromPath(pagePath: string): string | null {
   //   - news/overview/index (news/overview/index.ts)
   return (
     [pageId, pageId + (pageId === '' ? '' : '/') + 'index'].find(
-      (id) => id in templateFile.pages,
+      (id) => id in templateFile!.pages,
     ) || null
   );
 }
@@ -98,5 +99,5 @@ export async function getAppTemplate(pageData): Promise<string> {
     return 'Something went wrong or no Page found – check your node logs';
   }
 
-  return templateFile.appTemplate(pageData);
+  return templateFile!.appTemplate(pageData);
 }
