@@ -1,5 +1,4 @@
-import { html } from '@muban/muban/dist/esm/lib/template/mhtml';
-import type { ComponentTemplate } from '@muban/muban';
+import { ComponentTemplate, html } from '@muban/template';
 
 export type ComponentRendererTemplateProps = {
   component?: { name: string; props: Record<string, unknown> };

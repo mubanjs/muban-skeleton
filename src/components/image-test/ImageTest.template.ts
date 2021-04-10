@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { html } from '@muban/muban/dist/esm/lib/template/mhtml';
+import { html } from '@muban/template';
 
 export type ImageTestProps = {
   dataImage?: string;

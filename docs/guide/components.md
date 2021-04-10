@@ -154,7 +154,7 @@ The template function is `camelCase` to follow the JavaScript conventions.
 ```ts
 // MyComponent.template.ts
 
-import { html } from "@muban/muban";
+import { html } from "@muban/template";
 
 export type MyComponentTemplateProps = MyChildComponentProps & {
   prop1: string;

@@ -1,4 +1,4 @@
-import { html } from '@muban/muban/dist/esm/lib/template/mhtml';
+import { html } from '@muban/template';
 import {
   blockRendererTemplate,
   BlockRendererTemplateProps,
@@ -7,7 +7,5 @@ import {
 export type LayoutDefaultTemplateProps = BlockRendererTemplateProps;
 
 export function layoutDefaultTemplate({ blocks }: LayoutDefaultTemplateProps): string {
-  return html`<div data-component="layout-default">
-    ${blockRendererTemplate({ blocks })}
-  </div>`;
+  return html`<div data-component="layout-default">${blockRendererTemplate({ blocks })}</div>`;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { html, jsonScriptTemplate } from '@muban/muban/dist/esm/lib/template/mhtml';
+import { html, jsonScriptTemplate } from '@muban/template';
 import { buttonTemplate } from '../button/Button.template';
 import { cfA2Icon } from '../cf-a2-icon/CfA2Icon.template';
 

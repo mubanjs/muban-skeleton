@@ -20,6 +20,10 @@
 
 - implement live-reload for HTML reload
 - implement proper hot-reloading for JS components - or maybe just reload the page?
+- I noticed that the hot reloading for the new muban wouldn't work sometimes. E.g. when a
+  variable type error is fixed, it would continue to show the error. Only upon restarting the
+  server would it go away. (this is for server templates)
+
 
 ### Template rendering
 

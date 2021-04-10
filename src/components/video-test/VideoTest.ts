@@ -1,4 +1,4 @@
-import { defineComponent, computed, bind, onMounted } from '@muban/muban';
+import { defineComponent, onMounted } from '@muban/muban';
 import componentVideo from '../../assets/video/dummy-video-1.mp4';
 
 import './VideoTest.styles.scss';
