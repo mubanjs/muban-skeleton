@@ -9,8 +9,6 @@ export const ImageTest = defineComponent({
     jsImage: 'js-image',
   },
   setup({ refs }) {
-    return [
-      bind(refs.jsImage, { attr: { src: computed(() => componentImage)  }}),
-    ];
+    return [bind(refs.jsImage, { attr: { src: computed(() => componentImage) } })];
   },
 });

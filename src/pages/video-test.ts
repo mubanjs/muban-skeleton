@@ -9,7 +9,7 @@ export const data = (): AppTemplateProps => ({
         {
           name: 'video-test',
           props: {
-            dataVideo: process.env.PUBLIC_PATH + '/static/video/dummy-video-1.mp4',
+            dataVideo: `${process.env.PUBLIC_PATH}/static/video/dummy-video-1.mp4`,
           },
         },
         {
