@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --ext ts --exec 'ts-node' scripts/devserver/devserver.ts --watch scripts/devserver/devserver.ts --watch scripts/devserver/getServerBundle.ts",
-    "lint": "npm-run-all lint:*",
-    "lint:js": "eslint --ext .js,.ts src",
+    "lint": "npm-run-all lint:* --cache",
+    "lint:js": "eslint --ext .js,.ts src --cache",
     "lint:css": "stylelint src/**/*.styles.scss --cache",
     "fix": "npm-run-all fix:*",
     "fix:js": "eslint --ext .js,.ts src --fix --quiet --cache",
