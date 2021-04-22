@@ -29,7 +29,7 @@
     "@babel/runtime": "^7.13.10",
     "@muban/muban": "^1.0.0-alpha.26",
     "@muban/template": "^1.0.0-alpha.1",
-    "core-js": "^3.9.1",
+    "core-js": "^3.10.0",
     "normalize.css": "^8.0.1",
     "seng-scss": "^1.2.5"
   },
