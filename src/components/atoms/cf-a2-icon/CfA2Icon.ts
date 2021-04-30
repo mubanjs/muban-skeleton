@@ -1,5 +1,5 @@
-import { bind, defineComponent, propType } from '@muban/muban';
-import { computed } from '@vue/reactivity';
+import { bind, computed, defineComponent, propType } from '@muban/muban';
+
 import { isIcon, svgContext } from './CfA2Icon.config';
 
 import './CfA2Icon.styles.scss';

@@ -5,7 +5,9 @@ import { App } from './App';
 import { CfA2Icon } from './components/atoms/cf-a2-icon/CfA2Icon';
 
 const app = createApp(App);
-const element = document.getElementById('app');
+// eslint-disable-next-line no-restricted-properties
+const element = document.querySelector<HTMLElement>('#app');
+
 if (element) {
   app.component(CfA2Icon);
   app.mount(element);

@@ -10,7 +10,7 @@ export const data = (): AppTemplateProps => ({
 });
 
 // https://github.com/nfl/react-helmet
-export const meta = () => ({
+export const meta = (): Record<string, string> => ({
   title: 'foo',
   description: 'bar',
 });
