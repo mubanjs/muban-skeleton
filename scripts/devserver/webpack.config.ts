@@ -19,7 +19,6 @@ module.exports = {
     globalObject: 'this',
     path: paths.serverBundleOutputDir,
     filename: '[name].js',
-    // library: 'templates',
     libraryTarget: 'commonjs2',
   },
 

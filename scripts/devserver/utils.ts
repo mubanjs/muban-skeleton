@@ -192,3 +192,19 @@ function printInstructions(appName, urls, useYarn) {
   );
   console.log();
 }
+
+export function waitForCompilerFirstSuccess(compiler): Promise<void> {
+  return new Promise((resolve) => {
+    let devServerDidSuccessfulCompile = false;
+    compiler.hooks.done.tap('done', (stats) => {
+      const isSuccessful = !stats.hasErrors();
+      if (isSuccessful && !devServerDidSuccessfulCompile) {
+        // can't "untap" hooks :(
+        // https://github.com/webpack/tapable/issues/109
+        devServerDidSuccessfulCompile = true;
+
+        resolve();
+      }
+    });
+  });
+}

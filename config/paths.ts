@@ -29,7 +29,6 @@ export const paths = {
   webpackServerConfig: resolveProject('./scripts/devserver/webpack.config.ts'),
   serverBundleOutputDir: resolveProject('./scripts/devserver/output'),
   serverBundleOutputEntry: resolveProject('./scripts/devserver/output/main.js'),
-  webpackMockConfig: resolveProject('./scripts/webpack.config.mock.js'),
   devIndex: resolveProject('./scripts/devserver/index.html'),
   distIndex: resolveProject('./scripts/devserver/index.html'),
   webpackAssetPath: resolveSource('./assets'), // required through webpack
