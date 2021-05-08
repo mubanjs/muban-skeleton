@@ -17,7 +17,7 @@
     "build:debug": "yarn clean && cross-env-shell NODE_ENV=development yarn generate:code",
     "build:preview": "yarn clean && cross-env-shell NODE_ENV=production MUBAN_PREVIEW=true npm-run-all generate:*",
     "generate:code": "cross-env TS_NODE_PROJECT=\"config/tsconfig.webpack.json\" webpack -c ./config/webpack.config.ts",
-    "generate:templates": "cross-env NODE_ENV=development ts-node scripts/generateTemplates.ts",
+    "generate:templates": "cross-env NODE_ENV=production ts-node scripts/generateTemplates.ts",
     "generate:mock-server": "cross-env NODE_ENV=production ts-node scripts/mocks/generateMockPackageJson.ts",
     "storybook": "ts-node ./node_modules/.bin/start-storybook -p 6006 -s ./src/public,./src/pages",
     "storybook:build": "build-storybook -o ./dist/storybook -s ./src/public,./src/pages",
