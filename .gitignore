@@ -30,5 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintcache
+.stylelintcache
 
 /docs/.vuepress/dist
+
+/scripts/devserver/output/*
+/scripts/devserver/mocks/*

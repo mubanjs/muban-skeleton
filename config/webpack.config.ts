@@ -3,15 +3,12 @@ import path from 'path';
 import resolve from 'resolve';
 import webpack from 'webpack';
 import postcssNormalize from 'postcss-normalize';
-import PnpWebpackPlugin from 'pnp-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
-import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlugin';
 import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
@@ -173,9 +170,9 @@ module.exports = function () {
                   options: {
                     postcssOptions: {
                       plugins: [
-                        require('postcss-flexbugs-fixes'),
+                        'postcss-flexbugs-fixes',
                         [
-                          require('postcss-preset-env'),
+                          'postcss-preset-env',
                           {
                             autoprefixer: {
                               flexbox: 'no-2009',
@@ -350,10 +347,10 @@ module.exports = function () {
           }),
           async: isEnvDevelopment,
           checkSyntacticErrors: true,
-          resolveModuleNameModule: process.versions.pnp ? `${__dirname}/pnpTs.js` : undefined,
-          resolveTypeReferenceDirectiveModule: process.versions.pnp
-            ? `${__dirname}/pnpTs.js`
-            : undefined,
+          // resolveModuleNameModule: process.versions.pnp ? `${__dirname}/pnpTs.js` : undefined,
+          // resolveTypeReferenceDirectiveModule: process.versions.pnp
+          //   ? `${__dirname}/pnpTs.js`
+          //   : undefined,
           tsconfig: paths.tsConfig,
           reportFiles: [
             // This one is specifically to match during CI tests,

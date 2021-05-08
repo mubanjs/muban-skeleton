@@ -1,7 +1,5 @@
 import type { RequestConfig } from '@mediamonks/monck';
-import path from 'path';
 import faker from 'faker';
-import { existsSync } from 'fs';
 
 export default {
   'GET /user/info': (req, res) => {
@@ -30,14 +28,4 @@ export default {
       });
     }
   },
-
-  'GET /product/:id': (req, res) => {
-    const { id } = req.params;
-    const productPath = path.join(__dirname, `products/${id}.json`);
-    if (existsSync(productPath)) {
-      res.sendFile(productPath);
-    } else {
-      res.sendFile(path.join(__dirname, `products/default.json`));
-    }
-  }
 } as RequestConfig;

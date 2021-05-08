@@ -1,11 +1,11 @@
-/* eslint-disable react/jsx-key */
+import type { ComponentTemplateResult } from '@muban/template';
 import { html } from '@muban/template';
 
 export type VideoTestProps = {
   dataVideo?: string;
 };
 
-export function videoTestTemplate({ dataVideo }: VideoTestProps, ref) {
+export function videoTestTemplate({ dataVideo }: VideoTestProps): ComponentTemplateResult {
   return html`<div data-component="video-test">
     <h1>Video Test</h1>
     <div>

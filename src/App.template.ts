@@ -1,4 +1,5 @@
-import { html, TemplateMap } from '@muban/template';
+import type { TemplateMap } from '@muban/template';
+import { html } from '@muban/template';
 import { layoutCustomTemplate } from './components/layouts/CustomLayout.template';
 import { layoutDefaultTemplate } from './components/layouts/DefaultLayout.template';
 import { renderLazyComponentTemplate } from './utils/createComponentRenderer';

@@ -1,13 +1,15 @@
+import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { choosePort, prepareUrls } from 'react-dev-utils/WebpackDevServerUtils';
 import openBrowser from 'react-dev-utils/openBrowser';
 import clearConsole from 'react-dev-utils/clearConsole';
 import { paths } from '../../config/paths';
+import { buildMockWebpackConfig } from '../mocks/generateMockPackageJson';
 import { getCompiler } from '../utils';
 import { startWatcher } from './getServerBundle';
 import chalk from 'chalk';
-import { handleCompilerInfo } from './utils';
+import { handleCompilerInfo, waitForCompilerFirstSuccess } from './utils';
 import { createDevServerConfig } from './webpackDevServer.config';
 
 const isInteractive = process.stdout.isTTY;
@@ -44,29 +46,33 @@ async function start() {
 
     const proxy = {};
 
+    const mockConfig = await buildMockWebpackConfig(path.resolve(__dirname, './mocks'));
+
     const serverConfig = createDevServerConfig(proxy, urls.lanUrlForConfig);
 
     WebpackDevServer.addDevServerEntrypoints(clientConfig, serverConfig);
 
     const clientCompiler = webpack(clientConfig);
     const serverCompiler = getCompiler(require(paths.webpackServerConfig));
+    const mockCompiler = webpack(mockConfig);
 
     let watcher: webpack.Watching;
-    // delay starting the serverCompiler until the client WebpackDevServer is succesful
+    // delay starting the serverCompiler until the client WebpackDevServer is successful
     // - starting them both at the same time makes them WAY slower somehow
     // - if the normal build has errors, delay the
-    let devServerDidSuccessfulCompile = false;
-    clientCompiler.hooks.done.tap('done', (stats) => {
-      const isSuccessful = !stats.hasErrors();
-      if (isSuccessful && !devServerDidSuccessfulCompile) {
-        setTimeout(() => {
-          watcher = startWatcher(serverCompiler);
-        }, 1000);
+    waitForCompilerFirstSuccess(clientCompiler).then(() => {
+      setTimeout(() => {
+        watcher = startWatcher(serverCompiler);
 
-        // can't "untap" hooks :(
-        // https://github.com/webpack/tapable/issues/109
-        devServerDidSuccessfulCompile = true;
-      }
+        mockCompiler.watch({}, (err, stats) => {
+          if (err) {
+            console.error('[mocks] Error while watching', err);
+          }
+          if (stats && stats.hasErrors()) {
+            console.log(stats.toString({ colors: true, errorDetails: true }));
+          }
+        });
+      }, 1000);
     });
 
     const devSocket = {

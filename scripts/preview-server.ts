@@ -1,5 +1,7 @@
 // const config = require('../config/config');
 // if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.env.production.NODE_ENV);
+import { createMockMiddleWare } from '@mediamonks/monck';
+
 const path = require('path');
 const detectPort = require('detect-port');
 const express = require('express');
@@ -37,6 +39,9 @@ function start() {
     server.use(compression());
 
     server.use('/', express.static(root), serveIndex(root, { icons: true, view: 'details' }));
+
+    server.use('/api/', createMockMiddleWare(path.resolve(paths.distMockNodePath, './mocks')));
+    server.use('/api/', (req, res) => res.sendStatus(404));
 
     const uri = `${config.devServer.useHttps ? 'https' : 'http'}://localhost:${port}`;
 

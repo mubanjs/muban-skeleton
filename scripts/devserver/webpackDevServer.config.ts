@@ -124,7 +124,7 @@ export function createDevServerConfig(proxy, allowedHost) {
       // }
     },
     after(app) {
-      app.use('/api/', createMockMiddleWare(path.resolve(paths.projectDir, 'mocks')));
+      app.use('/api/', createMockMiddleWare(path.resolve(__dirname, './mocks')));
       app.use('/api/', (req, res) => res.sendStatus(404));
 
       app.use('/', async (req, res) => {
