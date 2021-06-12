@@ -44,7 +44,7 @@
     "@muban/template": "^1.0.0-alpha.1",
     "classnames": "^2.3.1",
     "core-js": "^3.10.0",
-    "isntnt": "^1.4.5",
+    "isntnt": "^1.4.6",
     "normalize.css": "^8.0.1",
     "seng-scss": "^1.2.5"
   },

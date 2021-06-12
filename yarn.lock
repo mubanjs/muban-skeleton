@@ -9840,10 +9840,10 @@ isntnt@^1.4.4:
   resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.4.4.tgz#b1c9b217478b1a9964bf312ed7fe7dfca0501566"
   integrity sha512-2zjHFz6i04BFBOPltVKhLS+XoOLcPpWPvYHdEc4OCZxqMY1J8He7IbwflYAAYaHfjjPLIZ6pOnxsfufxGIqWIA==
 
-isntnt@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.4.5.tgz#8ffb3654c1df6f98d6dc0660b117ad44bfa5f7c5"
-  integrity sha512-oJvZ+dv3GvZdVRROOFKdu3ovNCz35Eqz5QwM9Xcm3W5Z86FlrKTlf5kuFbeAqYXc7igXouEhB9ZQgLGYerwVFg==
+isntnt@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.4.6.tgz#5d5740611764e1647c7cb2305c8712294f78f3a7"
+  integrity sha512-Oh+FCyZfbZl1xnA23lEmab2rg1Xa3HarOR9gpCLkJB5id6JYU5hD3oOdhRPVvtWmfWS4W4dr+xmopbJ8ECTo2g==
 
 isobject@^2.0.0:
   version "2.1.0"
