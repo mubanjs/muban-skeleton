@@ -5,11 +5,11 @@ export const App = defineComponent({
   components: [
     lazy(
       'layout-default',
-      () => import(/* webpackExports: "lazy" */ './components/layouts/DefaultLayout'),
+      () => import(/* webpackExports: "lazy" */ './components/layouts/default/DefaultLayout'),
     ),
     lazy(
       'layout-custom',
-      () => import(/* webpackExports: "lazy" */ './components/layouts/CustomLayout'),
+      () => import(/* webpackExports: "lazy" */ './components/layouts/custom/CustomLayout'),
     ),
   ],
   setup() {
