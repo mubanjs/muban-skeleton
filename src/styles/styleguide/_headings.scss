@@ -1,0 +1,29 @@
+@mixin heading {
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+@mixin heading-1 {
+  font-size: 4.6rem;
+}
+
+@mixin heading-2 {
+  font-size: 3.6rem;
+}
+
+@mixin heading-3 {
+  font-size: 3rem;
+}
+
+@mixin heading-4 {
+  font-size: 2.4rem;
+}
+
+@mixin heading-5 {
+  font-size: 2rem;
+}
+
+@mixin heading-6 {
+  font-size: 1.8rem;
+}
