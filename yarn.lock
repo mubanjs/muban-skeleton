@@ -1895,6 +1895,13 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.0.0-beta.42":
+  version "7.14.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
+  integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.0", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
@@ -9771,6 +9778,11 @@ is-symbol@^1.0.2, is-symbol@^1.0.3:
   dependencies:
     has-symbols "^1.0.1"
 
+is-there@^4.4.4:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/is-there/-/is-there-4.5.1.tgz#ea292e7fad3fc4d70763fe0af40a286c9f5e1e2e"
+  integrity sha512-vIZ7HTXAoRoIwYSsTnxb0sg9L6rth+JOulNcavsbskQkCIWoSM2cjFOWZs4wGziGZER+Xgs/HXiCQZgiL8ppxQ==
+
 is-typedarray@^1.0.0, is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
@@ -11289,6 +11301,15 @@ node-releases@^1.1.66, node-releases@^1.1.67:
   version "1.1.67"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.67.tgz#28ebfcccd0baa6aad8e8d4d8fe4cbc49ae239c12"
   integrity sha512-V5QF9noGFl3EymEwUYzO+3NTDpGfQB4ve6Qfnzf3UNydMhjQRVPR1DZTuvWiLzaFJYw2fmDwAfnRNEVb64hSIg==
+
+node-sass-json-importer@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/node-sass-json-importer/-/node-sass-json-importer-4.3.0.tgz#15773cc070f16aa20e93b378908366af85f6f742"
+  integrity sha512-+j+SsxPzYo7fWIDuz/etuLs+wfay5Zx2bkWE4LazkycdYGzEtCQz4tgIFXveeLBCBM6jvY4fp45z2JEj6U+VWQ==
+  dependencies:
+    is-there "^4.4.4"
+    json5 "^2.1.1"
+    lodash "^4.17.15"
 
 nodemon@^2.0.6:
   version "2.0.6"
@@ -14230,6 +14251,29 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
+seng-device-state-tracker@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/seng-device-state-tracker/-/seng-device-state-tracker-1.1.4.tgz#1616aff9ea48a7e5bf770abac6f180262de1d0b3"
+  integrity sha512-JO++7O7v5pMk7Y0kz230FGCwP7U0ZZJP+yZkcuiirfOAOrdDaB6jzxx/0xoL3o7Yy1b3v6JY/fPcMNc17Y3i5Q==
+  dependencies:
+    seng-event "^1.2.3"
+    tslib "^1.8.0"
+
+seng-disposable@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/seng-disposable/-/seng-disposable-1.1.3.tgz#b8aeb960f17f136107ac6ca1923e8d2ca5fbb630"
+  integrity sha1-uK65YPF/E2EHrGyhkj6NLKX7tjA=
+  dependencies:
+    tslib "^1.2.0"
+
+seng-event@^1.2.3:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/seng-event/-/seng-event-1.2.4.tgz#30eced745037ee28bac3df26ef41906b80bfb094"
+  integrity sha512-cfJzTU8Z2Stn2tLhHycsQP4iKRcaP11+scvsYkw61wyuLJsXnLwrQTiEjMmgVt+ZRVdSza1bvOfM0t7FHQgTdA==
+  dependencies:
+    "@babel/runtime" "^7.0.0-beta.42"
+    seng-disposable "^1.1.3"
+
 seng-scss@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/seng-scss/-/seng-scss-1.2.5.tgz#3acc63baa918d701dcff55d5e9aac75da587f1c4"
@@ -15642,7 +15686,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.2.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
