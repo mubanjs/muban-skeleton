@@ -1,7 +1,7 @@
 // Correctly set `seng-scss` assetPath
 $pathAsset: "~assets";
-$pathFont: 'fonts'; // must be the same as config/paths.webpackAssetFonts
-$pathImage: 'images'; // must be the same as config/paths.webpackAssetImages
+$pathFont: "fonts"; // must be the same as config/paths.webpackAssetFonts
+$pathImage: "images"; // must be the same as config/paths.webpackAssetImages
 
 // Fonts
 $baseFont: Arial, sans-serif;
@@ -22,3 +22,6 @@ $easeInOutCustom: cubic-bezier(0.2, 0, 0, 1);
 $easeFast: 0.2s;
 $easeModerate: 0.6s;
 $easeSlow: 0.8s;
+
+// Shared variables between CSS and JS
+@import "../../data/shared-variables.json";
