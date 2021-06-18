@@ -4,7 +4,7 @@ import { onMounted, onUnmounted, ref } from '@muban/muban';
 import DeviceStateTracker, { DeviceStateEvent } from 'seng-device-state-tracker';
 import type IDeviceStateData from 'seng-device-state-tracker/lib/IDeviceStateData';
 
-import sharedVariables from '../data/shared-variables.json';
+import sharedVariables from '../config/shared-variables.json';
 
 const cleanMediaQueries = Object.keys(sharedVariables.mediaQueries).reduce<{
   [key: string]: string;
