@@ -13,6 +13,7 @@ import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
 import ForkTsCheckerWebpackPlugin from 'react-dev-utils/ForkTsCheckerWebpackPlugin';
 import typescriptFormatter from 'react-dev-utils/typescriptFormatter';
 import { getClientEnvironment } from './env';
+import jsonImporter from 'node-sass-json-importer';
 
 import { paths } from './paths';
 
@@ -206,6 +207,9 @@ module.exports = function () {
                         .replace(/\\/g, '/')}/styles/_global.scss";
                     `,
                     sourceMap: true,
+                    sassOptions: {
+                      importer: jsonImporter(),
+                    }
                   },
                 },
               ],
