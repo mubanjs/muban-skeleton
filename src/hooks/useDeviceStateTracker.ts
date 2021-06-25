@@ -1,5 +1,5 @@
 import type { Ref } from '@muban/muban';
-import { onMounted, onUnmounted, ref } from '@muban/muban';
+import { computed, onMounted, onUnmounted, ref } from '@muban/muban';
 
 import DeviceStateTracker, { DeviceStateEvent } from 'seng-device-state-tracker';
 import type IDeviceStateData from 'seng-device-state-tracker/lib/IDeviceStateData';
@@ -41,13 +41,11 @@ export function useDeviceStateTracker(): {
     });
   }
 
-  const activeDeviceState = ref<DeviceState>(deviceStateTracker.currentDeviceState.state);
-  const activeDeviceStateName = ref<DeviceStateName>(deviceStateTracker.currentDeviceState.name);
+  const activeDeviceState = ref<IDeviceStateData>(deviceStateTracker.currentDeviceState);
 
   const onDeviceStateChange = (event) => {
     const { data } = event as DeviceStateEvent;
-    activeDeviceState.value = data.state;
-    activeDeviceStateName.value = data.name;
+    activeDeviceState.value = data;
   };
 
   onMounted(() => {
@@ -59,7 +57,7 @@ export function useDeviceStateTracker(): {
   });
 
   return {
-    state: activeDeviceState,
-    name: activeDeviceStateName,
+    state: computed(() => activeDeviceState.value.state),
+    name: computed(() => activeDeviceState.value.name),
   };
 }
