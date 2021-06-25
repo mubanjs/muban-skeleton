@@ -1,3 +1,4 @@
+import jsonImporter from 'node-sass-json-importer'
 import { paths } from '../config/paths';
 
 export default {
@@ -9,6 +10,9 @@ export default {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
+          sassOptions: {
+            importer: jsonImporter(),
+          },
           additionalData: `
             @import "~seng-scss";
             @import "${paths.srcPath
