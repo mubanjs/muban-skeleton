@@ -8,7 +8,13 @@ import sharedVariables from '../config/shared-variables.json';
 
 const cleanMediaQueries = Object.keys(sharedVariables.mediaQueries).reduce<{
   [key: string]: string;
-}>((result, key: string) =>({ ...result, [key]: mediaQueries.mediaQueries[key].replace(/'/g, '') }), {});
+}>(
+  (result, key: string) => ({
+    ...result,
+    [key]: sharedVariables.mediaQueries[key].replace(/'/g, ''),
+  }),
+  {},
+);
 
 let deviceStateTracker: DeviceStateTracker | null = null;
 
