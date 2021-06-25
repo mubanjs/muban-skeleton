@@ -41,12 +41,8 @@ export function useDeviceStateTracker(): {
     });
   }
 
-  const activeDeviceState = ref<DeviceState>(
-    deviceStateTracker.currentDeviceState.state,
-  );
-  const activeDeviceStateName = ref<DeviceStateName>(
-    deviceStateTracker.currentDeviceState.name,
-  );
+  const activeDeviceState = ref<DeviceState>(deviceStateTracker.currentDeviceState.state);
+  const activeDeviceStateName = ref<DeviceStateName>(deviceStateTracker.currentDeviceState.name);
 
   const onDeviceStateChange = (event) => {
     const { data } = event as DeviceStateEvent;
