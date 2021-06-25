@@ -27,10 +27,10 @@ export type DeviceStateName = IDeviceStateData['name'];
  * const { state, name } = useDeviceStateTracker();
  * ```
  */
-export const useDeviceStateTracker = (): {
+export function useDeviceStateTracker(): {
   state: Ref<DeviceState>;
   name: Ref<DeviceStateName>;
-} => {
+} {
   if (deviceStateTracker === null) {
     deviceStateTracker = new DeviceStateTracker({
       deviceState: sharedVariables.deviceState,
@@ -64,4 +64,4 @@ export const useDeviceStateTracker = (): {
     state: activeDeviceState,
     name: activeDeviceStateName,
   };
-};
+}
