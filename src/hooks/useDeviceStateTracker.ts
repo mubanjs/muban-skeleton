@@ -8,11 +8,7 @@ import sharedVariables from '../config/shared-variables.json';
 
 const cleanMediaQueries = Object.keys(sharedVariables.mediaQueries).reduce<{
   [key: string]: string;
-}>((result, key: string) => {
-  // eslint-disable-next-line no-param-reassign
-  result[key] = sharedVariables.mediaQueries[key].replace(/'/g, '');
-  return result;
-}, {});
+}>((result, key: string) =>({ ...result, [key]: mediaQueries.mediaQueries[key].replace(/'/g, '') }), {});
 
 let deviceStateTracker: DeviceStateTracker | null = null;
 
