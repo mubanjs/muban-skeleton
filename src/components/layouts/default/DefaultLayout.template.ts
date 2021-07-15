@@ -2,8 +2,8 @@ import { html } from '@muban/template';
 import type { BlockRendererTemplateProps } from '../../block-renderer/BlockRenderer.template';
 import { blockRendererTemplate } from '../../block-renderer/BlockRenderer.template';
 
-export type DefaultLayoutTemplateProps = BlockRendererTemplateProps;
+export type LayoutDefaultTemplateProps = BlockRendererTemplateProps;
 
-export function defaultLayoutTemplate({ blocks }: DefaultLayoutTemplateProps): string {
-  return html`<div data-component="default-layout">${blockRendererTemplate({ blocks })}</div>`;
+export function layoutDefaultTemplate({ blocks }: LayoutDefaultTemplateProps): string {
+  return html`<div data-component="layout-default">${blockRendererTemplate({ blocks })}</div>`;
 }
