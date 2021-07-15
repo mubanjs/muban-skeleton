@@ -1,11 +1,11 @@
 import { defineComponent } from '@muban/muban';
 import { supportLazy } from '@muban/muban/dist/esm/lib/api/apiLazy';
 
-export const LayoutCustom = defineComponent({
-  name: 'layout-custom',
+export const CustomLayout = defineComponent({
+  name: 'custom-layout',
   setup() {
     return [];
   },
 });
 
-export const lazy = supportLazy(LayoutCustom);
+export const lazy = supportLazy(CustomLayout);
