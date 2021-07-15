@@ -3,7 +3,7 @@ import { videoTestDefaultMockData } from '../components/video-test/VideoTest.moc
 
 export const data = (): AppTemplateProps => ({
   layout: {
-    name: 'layout-default',
+    name: 'default-layout',
     props: {
       blocks: [
         {

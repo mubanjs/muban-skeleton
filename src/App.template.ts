@@ -5,8 +5,8 @@ import { defaultLayoutTemplate } from './components/layouts/default/DefaultLayou
 import { renderLazyComponentTemplate } from './utils/createComponentRenderer';
 
 const componentMap = {
-  'layout-default': defaultLayoutTemplate,
-  'layout-custom': customLayoutTemplate,
+  'default-layout': defaultLayoutTemplate,
+  'custom-layout': customLayoutTemplate,
 };
 
 export type AppTemplateProps = {

@@ -2,7 +2,7 @@ import type { AppTemplateProps } from '../App.template';
 
 export const data = (): AppTemplateProps => ({
   layout: {
-    name: 'layout-default',
+    name: 'default-layout',
     props: {
       blocks: [
         {

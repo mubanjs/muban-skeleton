@@ -42,7 +42,7 @@ export const GlobalRefresh = defineComponent({
   },
 });
 
-export function globalRefreshTemplate() {
+export function globalRefreshTemplate(): string {
   return html` <div data-component="global-refresh">
     <div data-component="child">
       <h1>Test</h1>
