@@ -1,7 +1,7 @@
 import type { TemplateMap } from '@muban/template';
 import { html } from '@muban/template';
-import { customLayoutTemplate } from './components/layouts/custom/CustomLayout.template';
-import { defaultLayoutTemplate } from './components/layouts/default/DefaultLayout.template';
+import { customLayoutTemplate } from './layouts/custom/CustomLayout.template';
+import { defaultLayoutTemplate } from './layouts/default/DefaultLayout.template';
 import { renderLazyComponentTemplate } from './utils/createComponentRenderer';
 
 const componentMap = {
