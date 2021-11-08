@@ -45,7 +45,9 @@
     "classnames": "^2.3.1",
     "core-js": "^3.10.0",
     "isntnt": "^1.4.5",
+    "node-sass-json-importer": "^4.3.0",
     "normalize.css": "^8.0.1",
+    "seng-device-state-tracker": "^1.1.4",
     "seng-scss": "^1.2.5"
   },
   "devDependencies": {

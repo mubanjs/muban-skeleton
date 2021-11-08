@@ -1,0 +1,11 @@
+{
+  "comments": ["'NOTE: The below can be a start, change according to your ux/project'", "'Only add key to deviceState that are used in the DeviceStateTracker'", "'Please mind the quotes: https://github.com/Updater/node-sass-json-importer#importing-strings'"],
+  "mediaQueries": {
+    "MAX_479": "'(max-width: 479px)'",
+    "MIN_480": "'(min-width: 480px)'"
+  },
+  "deviceState": {
+    "MAX_479": 0,
+    "MIN_480": 1
+  }
+}
