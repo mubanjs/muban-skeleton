@@ -1902,10 +1902,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.13.10":
-  version "7.13.10"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
-  integrity sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
+"@babel/runtime@^7.13.17":
+  version "7.16.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
+  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -5882,10 +5882,10 @@ core-js@^3.0.1, core-js@^3.0.4, core-js@^3.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
   integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
 
-core-js@^3.10.0:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.10.2.tgz#17cb038ce084522a717d873b63f2b3ee532e2cd5"
-  integrity sha512-W+2oVYeNghuBr3yTzZFQ5rfmjZtYB/Ubg87R5YOmlGrIb+Uw9f7qjUbhsj+/EkXhcV7eOD3jiM4+sgraX3FZUw==
+core-js@^3.19.1:
+  version "3.19.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.1.tgz#f6f173cae23e73a7d88fa23b6e9da329276c6641"
+  integrity sha512-Tnc7E9iKd/b/ff7GFbhwPVzJzPztGrChB8X8GLqoYGdEOG8IpLnK1xPyo3ZoO3HsK6TodJS58VGPOxA+hLHQMg==
 
 core-js@^3.6.4:
   version "3.8.1"
@@ -9840,10 +9840,10 @@ isntnt@^1.4.4:
   resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.4.4.tgz#b1c9b217478b1a9964bf312ed7fe7dfca0501566"
   integrity sha512-2zjHFz6i04BFBOPltVKhLS+XoOLcPpWPvYHdEc4OCZxqMY1J8He7IbwflYAAYaHfjjPLIZ6pOnxsfufxGIqWIA==
 
-isntnt@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.4.5.tgz#8ffb3654c1df6f98d6dc0660b117ad44bfa5f7c5"
-  integrity sha512-oJvZ+dv3GvZdVRROOFKdu3ovNCz35Eqz5QwM9Xcm3W5Z86FlrKTlf5kuFbeAqYXc7igXouEhB9ZQgLGYerwVFg==
+isntnt@^1.4.7:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/isntnt/-/isntnt-1.5.2.tgz#e6cd845585e804d42230f31621eb76b793cc15b5"
+  integrity sha512-Nd6x8hn7vfkrm7yyKmZwGNDdvrxIDIahk+NGp3bLAj8DTU+Qpc+qpxK0A0+f3cKQVLbKJUaPvT2t6JAHKMd+KQ==
 
 isobject@^2.0.0:
   version "2.1.0"
