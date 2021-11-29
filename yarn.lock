@@ -2203,10 +2203,10 @@
     ts-dedent "^1.1.1"
     vhtml "^2.2.0"
 
-"@muban/storybook@^7.0.0-alpha.13":
-  version "7.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/@muban/storybook/-/storybook-7.0.0-alpha.13.tgz#af98f5a9f4490a2a90d0c76639a4917b971dfd99"
-  integrity sha512-HwaXDCubHc4c1ArlLMULtH0RtUD/slZ1vslGMHCuvVhTskQRMQ5advZOCV4OUJX4qfUu5dKgTFvALynbuZMozA==
+"@muban/storybook@^7.0.0-alpha.14":
+  version "7.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@muban/storybook/-/storybook-7.0.0-alpha.14.tgz#06a7caef19ba06c61cfdf28a31772ad2954b53e2"
+  integrity sha512-P1xyk9E/hZIy8lfzpb5H/Of7pwZWfmbB7Y3LaJGj6xlQiAficrKpOMv8A491VDMrCQnYa655ZsU1g1zdjVLD7A==
   dependencies:
     "@storybook/addons" "^6.1.21"
     "@storybook/core" "^6.1.21"
