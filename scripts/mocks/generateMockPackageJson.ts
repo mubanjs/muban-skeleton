@@ -1,13 +1,13 @@
-import fs from 'fs';
-import path from 'path';
 import recursive from 'recursive-readdir';
-import { execSync } from 'child_process';
 import shell from 'shelljs';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin';
-import { getClientEnvironment } from '../../config/env';
 import nodeExternals from 'webpack-node-externals';
+import { execSync } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import { getClientEnvironment } from '../../config/env';
 
 import { paths } from '../../config/paths';
 
@@ -21,7 +21,7 @@ const BUNDLE_PACKAGES = false;
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 // Get environment variables to inject into our app.
-const env = getClientEnvironment(paths.publicPath.slice(0, -1));
+const environment = getClientEnvironment(paths.publicPath.slice(0, -1));
 
 async function start() {
   // clean up
@@ -42,9 +42,9 @@ async function start() {
   execSync(`tsc -p ${path.resolve(paths.projectDir, './scripts/mocks/tsconfig.mocks.json')}`);
 
   const mockConfig = await buildMockWebpackConfig(path.resolve(paths.distMockNodePath, './mocks'));
-  webpack(mockConfig, (err, stats) => {
-    if (err || !stats) {
-      console.error(err);
+  webpack(mockConfig, (error, stats) => {
+    if (error || !stats) {
+      console.error(error);
       return;
     }
 
@@ -59,14 +59,13 @@ async function start() {
         }),
       );
       return;
-    } else {
-      console.log(
-        stats.toString({
-          colors: true,
-        }),
-      );
-      console.log('\nMock files created\n');
     }
+    console.log(
+      stats.toString({
+        colors: true,
+      }),
+    );
+    console.log('\nMock files created\n');
 
     // remove static folder, this is being deployed by the actual project
     shell.rm('-rf', `${paths.distMockNodePath}/mocks/static`);
@@ -123,9 +122,9 @@ function getMockFiles(): Promise<Array<string>> {
           );
         },
       ],
-      (err, files) => {
-        if (err) {
-          return reject(err);
+      (error, files) => {
+        if (error) {
+          return reject(error);
         }
         const pages = files.map((f) => path.basename(f));
 
@@ -145,15 +144,16 @@ function getMockFiles(): Promise<Array<string>> {
 export async function buildMockWebpackConfig(outputPath: string): Promise<webpack.Configuration> {
   const files = await getMockFiles();
   return {
-    mode: 'production',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mode: environment.raw.NODE_ENV as any,
     target: 'node',
     // Stop compilation early in production
     bail: true,
     devtool: false,
     // generate an individual "library" file for each file in the mock directory
     entry: files.reduce(
-      (acc, file) => ({
-        ...acc,
+      (accumulator, file) => ({
+        ...accumulator,
         [path.basename(file, path.extname(file))]: path.resolve(paths.mockPath, `./${file}`),
       }),
       {},
@@ -270,7 +270,7 @@ export async function buildMockWebpackConfig(outputPath: string): Promise<webpac
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
       // It is absolutely essential that NODE_ENV is set to production
       // during a production build.
-      new webpack.DefinePlugin(env.stringified),
+      new webpack.DefinePlugin(environment.stringified),
 
       new CopyWebpackPlugin({
         patterns: [
