@@ -1,11 +1,10 @@
-/* eslint-disable react/jsx-key */
 import { html } from '@muban/template';
 
 export type VideoTestProps = {
   dataVideo?: string;
 };
 
-export function videoTestTemplate({ dataVideo }: VideoTestProps, ref) {
+export function videoTestTemplate({ dataVideo }: VideoTestProps) {
   return html`<div data-component="video-test">
     <h1>Video Test</h1>
     <div>
@@ -23,7 +22,7 @@ export function videoTestTemplate({ dataVideo }: VideoTestProps, ref) {
     <div>
       <h2>Template Video</h2>
       <video controls>
-        <source type="video/mp4" src="${process.env.PUBLIC_PATH}/static/video/dummy-video-1.mp4" />
+        <source type="video/mp4" src="${process.env.PUBLIC_PATH}static/media/dummy-video-1.mp4" />
       </video>
     </div>
   </div>`;

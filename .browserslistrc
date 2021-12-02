@@ -1,9 +1,0 @@
-# Browsers that we support
-
-# defaults   #  > 0.5%, last 2 versions, Firefox ESR, not dead
-
-last 3 versions
-last 3 iOS versions
-not IE 11   # remove `not` to support IE 11
-not dead    # hide dead browsers
-> 5%        # include if this is used by a lot of people, even though not in the above records

@@ -18,6 +18,7 @@ Default.args = {
   isExpanded: false,
 };
 
+// @ts-ignore
 export const Expanded = Default.bind({});
 Expanded.args = {
   isExpanded: true,

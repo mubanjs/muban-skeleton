@@ -13,11 +13,12 @@ export default {
 
 export const Default: Story<VideoTestProps> = () => ({
   component: VideoTest,
-  template: videoTestTemplate as any,
+  template: videoTestTemplate,
 });
 Default.args = {
-  dataVideo: process.env.PUBLIC_PATH + '/static/video/dummy-video-1.mp4',
+  dataVideo: `${process.env.PUBLIC_PATH}static/media/dummy-video-1.mp4`,
 };
 
+// @ts-ignore
 export const Mock: Story<VideoTestProps> = Default.bind({});
 Mock.args = videoTestDefaultMockData;

@@ -1,0 +1,70 @@
+import { readFile } from "fs/promises";
+import requireFromString from "require-from-string";
+
+const NS = "MubanPagePlugin";
+
+let cachedTemplate;
+
+async function getHTMLTemplate(path) {
+  cachedTemplate = cachedTemplate ?? (await readFile(path, { encoding: "utf-8" }));
+  return cachedTemplate;
+}
+
+function replaceTemplateVars(template, variables = {}) {
+  let updatedTemplate = String(template);
+
+  for (const [key, value] of Object.entries(variables)) {
+    updatedTemplate = updatedTemplate.replace(new RegExp(`{{${key}}}`, "g"), value);
+  }
+
+  return updatedTemplate;
+}
+
+export default class MubanPagePlugin {
+  options;
+
+  constructor(options) {
+    this.options = options;
+  }
+
+  apply(compiler) {
+    const { webpack } = compiler;
+    const { sources, Compilation } = webpack;
+
+    // Specify the event hook to attach to
+    compiler.hooks.thisCompilation.tap(NS, (compilation) => {
+      compilation.hooks.processAssets.tapPromise(
+        { name: NS, stage: Compilation.PROCESS_ASSETS_STAGE_DERIVED },
+        async () => {
+          const [chunk] = compilation.chunks;
+          const [file] = chunk.files;
+
+          const source = compilation.getAsset(file).source.source();
+
+          const { pages, appTemplate } = requireFromString(source);
+
+          const compilationHash = compilation.hash;
+
+          const publicPath = compilation.getAssetPath(compilation.outputOptions.publicPath, {
+            hash: compilationHash,
+          });
+
+          const htmlTemplate = await getHTMLTemplate(this.options.template);
+
+          for (const [page, pageModule] of Object.entries(pages)) {
+            if (!pageModule || !("data" in pageModule)) continue;
+
+            const pageTemplate = replaceTemplateVars(htmlTemplate, {
+              content: appTemplate(pageModule.data()),
+              publicPath,
+            });
+
+            compilation.emitAsset(`${page}.html`, new sources.RawSource(pageTemplate));
+          }
+
+          compilation.deleteAsset(file);
+        }
+      );
+    });
+  }
+}

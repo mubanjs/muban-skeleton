@@ -1,11 +1,10 @@
-/* eslint-disable react/jsx-key */
 import { html } from '@muban/template';
 
 export type ImageTestProps = {
   dataImage?: string;
 };
 
-export function imageTestTemplate({ dataImage }: ImageTestProps, ref) {
+export function imageTestTemplate({ dataImage }: ImageTestProps) {
   return html`<div data-component="image-test">
     <div>
       <h1>Data Image</h1>
@@ -21,7 +20,7 @@ export function imageTestTemplate({ dataImage }: ImageTestProps, ref) {
     </div>
     <div>
       <h1>Template Image</h1>
-      <img src="${process.env.PUBLIC_PATH}/static/images/template-test.jpg" />
+      <img src="${process.env.PUBLIC_PATH}static/img/template-test.jpg" />
     </div>
   </div>`;
 }

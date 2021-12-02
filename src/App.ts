@@ -16,3 +16,5 @@ export const App = defineComponent({
     return [];
   },
 });
+
+console.log("hi")

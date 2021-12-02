@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { html, jsonScriptTemplate } from '@muban/template';
 import { buttonTemplate } from '../button/Button.template';
 import { cfA2Icon } from '../cf-a2-icon/CfA2Icon.template';
@@ -9,7 +8,7 @@ export type ToggleExpandProps = {
   isExpanded?: boolean;
 };
 
-export function toggleExpandTemplate({ isExpanded = false }: ToggleExpandProps, ref) {
+export function toggleExpandTemplate({ isExpanded = false }: ToggleExpandProps, ref: unknown) {
   return html`<div data-component="toggle-expand" dat-ref=${ref}>
     ${jsonScriptTemplate({ isExpanded })}
     <p>${cfA2Icon({ name: 'checkmark' })}</p>

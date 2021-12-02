@@ -13,11 +13,12 @@ export default {
 
 export const Default: Story<ImageTestProps> = () => ({
   component: ImageTest,
-  template: imageTestTemplate as any,
+  template: imageTestTemplate,
 });
 Default.args = {
-  dataImage: process.env.PUBLIC_PATH + '/static/images/mock-test.jpg',
+  dataImage: `${process.env.PUBLIC_PATH}static/img/mock-test.jpg`,
 };
 
+// @ts-ignore
 export const Mock: Story<ImageTestProps> = Default.bind({});
 Mock.args = imageTestDefaultMockData;
