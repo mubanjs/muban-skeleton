@@ -105,7 +105,9 @@ async function start() {
       const data = await getPageData(page.id);
       const templateResult = await getAppTemplate(data);
 
-      const pageOutput = replaceTemplateVars(pageTemplate, templateResult || '');
+      const pageOutput = replaceTemplateVars(pageTemplate, templateResult || '', {
+        csp: '',
+      });
 
       const outputPath = path.resolve(paths.distSitePath, `${page.id}.html`);
       fs.ensureFileSync(outputPath);

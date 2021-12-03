@@ -153,6 +153,9 @@ export function createDevServerConfig(proxy, allowedHost) {
           replaceTemplateVars(
             readFileSync(path.resolve(__dirname, './index.html'), 'utf-8'),
             templateResult,
+            {
+              csp: `<meta http-equiv="Content-Security-Policy" content="script-src 'sha256-+OVgFCkyF2/rZ6qyfsNnIisCRI6dtMZw3w0Y4xiYagw=' 'strict-dynamic' https: 'unsafe-inline'; object-src 'none'; base-uri 'none';">`,
+            },
           ),
         );
       });
