@@ -2,11 +2,9 @@ export { appTemplate } from '../App.template';
 
 const context = require.context('.', true, /\.ts$/);
 
-export const pages = context.keys().reduce(
-  (p, key) => ({
-    ...p,
+export const pages = Object.fromEntries(
+  context
+    .keys()
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    [/\/(.*)\.ts/gi.exec(key)![1] as string]: context(key),
-  }),
-  {},
+    .map((filename) => [/\/(.*)\.ts/gi.exec(filename)![1] as string, context(filename)]),
 );
