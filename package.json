@@ -22,8 +22,8 @@
   "dependencies": {
     "@mediamonks/monck": "^1.0.0-alpha.3",
     "@muban/storybook": "^7.0.0-alpha.15",
-    "@storybook/builder-webpack5": "^6.4.0",
-    "@storybook/manager-webpack5": "^6.4.0",
+    "@storybook/builder-webpack5": "^6.4.8",
+    "@storybook/manager-webpack5": "^6.4.8",
     "require-from-string": "^2.0.2"
   },
   "peerDependencies": {
