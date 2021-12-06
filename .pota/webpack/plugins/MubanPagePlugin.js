@@ -41,7 +41,18 @@ export default class MubanPagePlugin {
 
           const source = compilation.getAsset(file).source.source();
 
-          const { pages, appTemplate } = requireFromString(source);
+          let module;
+
+          try {
+            module = requireFromString(source);
+          } catch (error) {
+            console.log();
+            console.error(`Error occurred loading "${file}"`);
+            console.error(error);
+            return; // bail
+          }
+
+          const { pages = {}, appTemplate = () => "" } = module ?? {};
 
           const compilationHash = compilation.hash;
 
@@ -54,12 +65,20 @@ export default class MubanPagePlugin {
           for (const [page, pageModule] of Object.entries(pages)) {
             if (!pageModule || !("data" in pageModule)) continue;
 
-            const pageTemplate = replaceTemplateVars(htmlTemplate, {
-              content: appTemplate(pageModule.data()),
-              publicPath,
-            });
+            const asset = `${page}.html`;
 
-            compilation.emitAsset(`${page}.html`, new sources.RawSource(pageTemplate));
+            try {
+              const pageTemplate = replaceTemplateVars(htmlTemplate, {
+                content: appTemplate(pageModule.data()),
+                publicPath,
+              });
+
+              compilation.emitAsset(`${page}.html`, new sources.RawSource(pageTemplate));
+            } catch (error) {
+              console.log();
+              console.error(`Error occurred emitting "${asset}":`);
+              console.error(error);
+            }
           }
 
           compilation.deleteAsset(file);
