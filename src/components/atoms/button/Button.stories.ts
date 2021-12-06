@@ -1,5 +1,6 @@
 import type { Story } from '@muban/storybook/dist/client/preview/types-6-0';
-import { meta, ButtonTemplateProps } from './Button.template';
+import type { ButtonTemplateProps } from './Button.template';
+import { meta } from './Button.template';
 
 export default {
   title: 'Button',

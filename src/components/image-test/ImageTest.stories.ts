@@ -19,6 +19,5 @@ Default.args = {
   dataImage: `${process.env.PUBLIC_PATH}static/img/mock-test.jpg`,
 };
 
-// @ts-ignore
 export const Mock: Story<ImageTestProps> = Default.bind({});
 Mock.args = imageTestDefaultMockData;

@@ -1,20 +1,21 @@
-/* eslint-disable react/jsx-key */
-import { defineComponent, Ref, ref, propType, computed, bind } from '@muban/muban';
+import type { Ref } from '@muban/muban';
+import { defineComponent, ref, propType, computed, bind } from '@muban/muban';
 import { supportLazy } from '@muban/muban/dist/esm/lib/api/apiLazy';
 import { isBoolean, optional } from 'isntnt';
 
 import './toggle-expand.scss';
 import { CfA2Icon } from '../cf-a2-icon/CfA2Icon';
 
-import data from '../../../assets/json/test.json';
-
-console.log('json data test', data);
-
 export const useToggle = (
   initialValue: boolean,
 ): readonly [Ref<boolean>, (force?: boolean) => void] => {
   const state = ref(initialValue);
-  const toggle = (force?: boolean) => (state.value = force === undefined ? !state.value : force);
+
+  function toggle(force?: boolean) {
+    state.value = force === undefined ? !state.value : force;
+    return state.value;
+  }
+
   return [state, toggle] as const;
 };
 

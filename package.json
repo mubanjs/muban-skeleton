@@ -7,6 +7,7 @@
     ".editorconfig",
     ".pota",
     ".storybook",
+    ".eslintrc.cjs",
     "static",
     "patches"
   ],
@@ -27,14 +28,16 @@
     "require-from-string": "^2.0.2"
   },
   "peerDependencies": {
-    "@mediamonks/eslint-config-base": "^2.0.0-alpha.0",
-    "@pota/cli": "^1.0.0-rc.6",
-    "@pota/webpack-skeleton": "^1.0.0-rc.33",
+    "@mediamonks/eslint-config-base": "^2.0.0-alpha.4",
     "@muban/muban": "1.0.0-alpha.26",
     "@muban/template": "^1.0.0-alpha.1",
+    "@pota/cli": "^1.0.0-rc.6",
+    "@pota/webpack-skeleton": "^1.0.0-rc.33",
     "@vue/reactivity": "^3.2.23",
     "classnames": "^2.3.1",
-    "seng-scss": "^1.2.5",
-    "normalize.css": "^8.0.1"
+    "eslint-plugin-lit": "^1.6.1",
+    "eslint-plugin-lit-a11y": "^2.2.0",
+    "normalize.css": "^8.0.1",
+    "seng-scss": "^1.2.5"
   }
 }

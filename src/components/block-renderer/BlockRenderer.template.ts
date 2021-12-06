@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { html, TemplateMap } from '@muban/template';
+import type { TemplateMap } from '@muban/template';
+import { html } from '@muban/template';
 import { renderLazyComponentTemplate } from '../../utils/createComponentRenderer';
 import { imageTestTemplate } from '../image-test/ImageTest.template';
 import { toggleExpandTemplate } from '../atoms/toggle-expand/ToggleExpand.template';
