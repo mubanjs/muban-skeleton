@@ -22,9 +22,8 @@ function createMainConfig(config, { mainName, pagesName }) {
 
   const findPlugin = createFindPlugin(config);
   const htmlPlugin = findPlugin("HtmlWebpackPlugin");
-  const copyPlugin = findPlugin("CopyPlugin");
 
-  plugins = plugins.filter((plugin) => plugin !== htmlPlugin && plugin !== copyPlugin);
+  plugins = plugins.filter((plugin) => plugin !== htmlPlugin);
 
   /** @type {import('webpack').Configuration} */
   return {
@@ -120,16 +119,6 @@ function createMainConfig(config, { mainName, pagesName }) {
         ignoreOrder: true,
         filename: "static/css/[name].css",
         chunkFilename: `static/css/${isDev ? "[id]" : "[id].[contenthash]"}.css`,
-      }),
-      new CopyPlugin({
-        patterns: [
-          {
-            from: "static",
-            to: `static`,
-            noErrorOnMissing: true,
-            globOptions: { ignore: ["**/.*"] },
-          },
-        ],
       }),
     ],
   };

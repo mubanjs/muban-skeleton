@@ -6,7 +6,7 @@ module.exports = {
     builder: "webpack5",
   },
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  staticDirs: [{ from: "../static", to: "static" }, "../src/pages/public", "static"],
+  staticDirs: ["../public", "../src/pages/public", "static"],
   async webpackFinal(config) {
     const { getNestedConfigs, createConfig, createFindPlugin } = await import(
       "@pota/webpack-skeleton/.pota/webpack/util.js"

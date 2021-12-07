@@ -9,7 +9,8 @@
     ".storybook",
     ".eslintrc.cjs",
     "static",
-    "patches"
+    "patches",
+    "public"
   ],
   "scripts": {
     "build": "pota build --output=dist/site",
