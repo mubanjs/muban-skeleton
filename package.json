@@ -10,21 +10,21 @@
     ".eslintrc.cjs",
     "static",
     "patches",
+    "mocks",
     "public"
   ],
   "scripts": {
-    "dev": "pota dev --port 9000",
+    "apply-storybook-patches": "patch --forward node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js < patches/cjs-entry.patch",
     "build": "pota build --output=dist/site",
     "build:preview": "npm run build -- --preview",
-    "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
-    "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook",
-    "apply-storybook-patches": "patch --forward node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js < patches/cjs-entry.patch",
-    "docs:dev": "vuepress dev docs",
+    "dev": "pota dev --port 9000",
     "docs:build": "vuepress build docs",
-    "docs:deploy": "./deploy-docs.sh"
+    "docs:deploy": "./deploy-docs.sh",
+    "docs:dev": "vuepress dev docs",
+    "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
+    "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
   "dependencies": {
-    "@mediamonks/monck": "^1.0.0-alpha.3",
     "@muban/storybook": "^7.0.0-alpha.15",
     "@storybook/builder-webpack5": "^6.4.8",
     "@storybook/manager-webpack5": "^6.4.8",
@@ -32,14 +32,17 @@
   },
   "peerDependencies": {
     "@mediamonks/eslint-config-base": "^2.0.0-alpha.4",
+    "@mediamonks/monck": "^1.0.0-alpha.3",
     "@muban/muban": "1.0.0-alpha.26",
     "@muban/template": "^1.0.0-alpha.1",
     "@pota/cli": "^1.0.0-rc.6",
     "@pota/webpack-skeleton": "^1.0.0-rc.33",
+    "@types/faker": "^5.5.9",
     "@vue/reactivity": "^3.2.23",
     "classnames": "^2.3.1",
     "eslint-plugin-lit": "^1.6.1",
     "eslint-plugin-lit-a11y": "^2.2.0",
+    "faker": "^5.5.3",
     "isntnt": "^1.5.2",
     "normalize.css": "^8.0.1",
     "seng-scss": "^1.2.5"

@@ -1,4 +1,5 @@
 import { join, resolve } from "path";
+import { createMockMiddleWare } from "@mediamonks/monck";
 import historyApiFallback from "connect-history-api-fallback";
 import * as paths from "@pota/webpack-skeleton/.pota/webpack/paths.js";
 import { createFindPlugin } from "@pota/webpack-skeleton/.pota/webpack/util.js";
@@ -13,7 +14,7 @@ function isString(value) {
   return typeof value === "string";
 }
 
-function createMainConfig(config, { mainName, pagesName }) {
+function createMainConfig(config, { mainName, pagesName, mockApi }) {
   let { plugins } = config;
 
   const isDev = config.mode
@@ -93,6 +94,13 @@ function createMainConfig(config, { mainName, pagesName }) {
           throw new Error("[onBeforeSetupMiddleware]: `devServer` is not defined");
         }
 
+        if (mockApi) {
+          devServer.app.use(
+            "/api/",
+            createMockMiddleWare(resolve(paths.user, "mocks"), { ingoreFiles: ["package.json"] })
+          );
+          devServer.app.use("/api/", (_, res) => res.sendStatus(404));
+        }
         devServer.app.use("/", (req, res, next) => {
           if (!devServer.stats) return next();
 
@@ -169,11 +177,12 @@ function createPagesConfig(config, { mainName, pagesName }) {
 }
 
 function parseOptions(options) {
-  let { preview = false } = options;
+  let { preview = false, ["mock-api"]: mockApi = false } = options;
 
   if (preview === "false") preview = false;
+  if (mockApi === "false") mockApi = false;
 
-  return { preview };
+  return { preview, mockApi };
 }
 
 export default function createConfig(config, options = {}) {
@@ -181,7 +190,7 @@ export default function createConfig(config, options = {}) {
     ? config.mode === "development"
     : process.env.NODE_ENV === "development";
 
-  const { preview } = parseOptions(options);
+  const { preview, mockApi } = parseOptions(options);
 
   const mainName = "muban";
   const pagesName = "pages";
@@ -189,7 +198,7 @@ export default function createConfig(config, options = {}) {
   /** @type {import('webpack').Configuration[]} */
   return [
     // the "main" configuration for bundling the muban app
-    createMainConfig(config, { mainName, pagesName }),
+    createMainConfig(config, { mainName, pagesName, mockApi }),
     // the "pages" configuration for bundling the static pages (also used to serve development pages)
     (preview || isDev) && createPagesConfig(config, { mainName, pagesName }),
   ].filter(Boolean);
