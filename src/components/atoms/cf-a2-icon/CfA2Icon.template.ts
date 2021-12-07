@@ -1,5 +1,5 @@
 import { html } from '@muban/template';
-import classNames from 'classnames';
+import classNames from 'clsx';
 
 import type { CfA2IconTemplateProps } from './CfA2Icon.types';
 

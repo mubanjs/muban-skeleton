@@ -39,7 +39,7 @@
     "@pota/webpack-skeleton": "^1.0.0-rc.33",
     "@types/faker": "^5.5.9",
     "@vue/reactivity": "^3.2.23",
-    "classnames": "^2.3.1",
+    "clsx": "^1.1.1",
     "eslint-plugin-lit": "^1.6.1",
     "eslint-plugin-lit-a11y": "^2.2.0",
     "faker": "^5.5.3",
