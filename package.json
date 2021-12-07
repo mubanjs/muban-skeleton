@@ -13,6 +13,7 @@
     "public"
   ],
   "scripts": {
+    "dev": "pota dev --port 9000",
     "build": "pota build --output=dist/site",
     "build:preview": "npm run build -- --preview",
     "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
