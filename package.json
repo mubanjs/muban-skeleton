@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "build": "pota build --output=dist/site",
+    "build:preview": "npm run build -- --preview",
     "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook",
     "apply-storybook-patches": "patch --forward node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js < patches/cjs-entry.patch",
