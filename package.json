@@ -13,6 +13,9 @@
     "mocks",
     "public"
   ],
+  "config": {
+    "host": "TODO: Add a host name."
+  },
   "scripts": {
     "apply-storybook-patches": "patch --forward node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js < patches/cjs-entry.patch",
     "build": "pota build --output=dist/site",
@@ -21,6 +24,8 @@
     "docs:build": "vuepress build docs",
     "docs:deploy": "./deploy-docs.sh",
     "docs:dev": "vuepress dev docs",
+    "rsync": "cross-env rsync -avPx dist/site/* ${npm_package_name}@${npm_package_config_host}:~/public/ --delete-after",
+    "rsync:mocks": "cross-env rsync -avPx dist/node/* ${npm_package_name}@${npm_package_config_host}:~/node --delete-after",
     "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
