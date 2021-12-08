@@ -51,5 +51,8 @@
     "isntnt": "^1.5.2",
     "normalize.css": "^8.0.1",
     "seng-scss": "^1.2.5"
+  },
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.27"
   }
 }
