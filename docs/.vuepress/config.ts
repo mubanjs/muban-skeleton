@@ -21,7 +21,6 @@ export default defineUserConfig<DefaultThemeOptions>({
         'components',
         'pages',
         'scripts',
-        'build-config',
         'folders',
         'assets',
       ],
