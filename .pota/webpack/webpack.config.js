@@ -23,8 +23,9 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
 
   const findPlugin = createFindPlugin(config);
   const htmlPlugin = findPlugin("HtmlWebpackPlugin");
+  const miniCssExtractPlugin = findPlugin("MiniCssExtractPlugin");
 
-  plugins = plugins.filter((plugin) => plugin !== htmlPlugin);
+  plugins = plugins.filter((plugin) => plugin !== htmlPlugin && plugin !== miniCssExtractPlugin);
 
   /** @type {import('webpack').Configuration} */
   return {
@@ -46,6 +47,7 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
             name: "main",
             type: "css/mini-extract",
             chunks: "all",
+            reuseExistingChunk: true,
             enforce: true,
           },
         },
@@ -97,7 +99,9 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
         if (mockApi) {
           devServer.app.use(
             "/api/",
-            createMockMiddleWare(resolve(paths.user, "mocks"), { ingoreFiles: ["package.json"] })
+            createMockMiddleWare(resolve(paths.user, "mocks"), {
+              ingoreFiles: ["package.json"],
+            })
           );
           devServer.app.use("/api/", (_, res) => res.sendStatus(404));
         }
@@ -132,6 +136,16 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
   };
 }
 
+const IMG_TEST = /\.(png|jpe?g|gif|webp|avif)(\?.*)?$/;
+const SVG_TEST = /\.(svg)(\?.*)?$/;
+const MEDIA_TEST = /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/;
+const TS_TEST = /\.tsx?$/;
+const JS_TEST = /\.m?jsx?$/;
+
+const PERMITTED_PAGE_RULE_TESTS = [JS_TEST, IMG_TEST, SVG_TEST, MEDIA_TEST, TS_TEST].map((test) =>
+  String(test)
+);
+
 function createPagesConfig(config, { mainName, pagesName }) {
   const definePlugin = createFindPlugin(config)("DefinePlugin");
 
@@ -154,10 +168,26 @@ function createPagesConfig(config, { mainName, pagesName }) {
       library: { type: "commonjs" },
     },
     optimization: {
-      ...config.optimization,
       minimize: false,
       moduleIds: "named",
       runtimeChunk: undefined,
+    },
+    module: {
+      ...config.module,
+      rules: [
+        {
+          oneOf: [
+            ...config.module.rules.filter((rule) =>
+              PERMITTED_PAGE_RULE_TESTS.includes(String(rule.test))
+            ),
+            // `null-loader` will make sure to ignore any accidental imports to e.g. `.css` files
+            {
+              exclude: [/\.(js|mjs|ts)$/, /\.html$/, /\.json$/],
+              use: "null-loader",
+            },
+          ],
+        },
+      ],
     },
     // we only care about compiling the `.ts` files in the `/src/pages` directory into `.html` files
     plugins: [
@@ -168,7 +198,9 @@ function createPagesConfig(config, { mainName, pagesName }) {
           {
             from: publicDir,
             toType: "dir",
-            globOptions: { ignore: ["**/.*", resolve(publicDir, "index.html")] },
+            globOptions: {
+              ignore: ["**/.*", resolve(publicDir, "index.html")],
+            },
           },
         ],
       }),
