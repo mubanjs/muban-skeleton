@@ -38,7 +38,7 @@
   "peerDependencies": {
     "@mediamonks/eslint-config-base": "^2.0.0-alpha.4",
     "@mediamonks/monck": "^1.0.0-alpha.3",
-    "@muban/muban": "1.0.0-alpha.26",
+    "@muban/muban": "^1.0.0-alpha.28",
     "@muban/template": "^1.0.0-alpha.1",
     "@pota/cli": "^1.0.0-rc.6",
     "@pota/webpack-skeleton": "^1.0.0-rc.33",
