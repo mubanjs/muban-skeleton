@@ -8,5 +8,10 @@ export const options = [
     option: '--preview',
     description: 'Toggles support for building the preview',
   },
+  {
+    option: '--mock-api',
+    description: 'Toggles support for building API mocks',
+    default: false
+  },
 ];
 

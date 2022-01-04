@@ -27,6 +27,7 @@
     "rsync": "cross-env rsync -avPx dist/site/* ${npm_package_name}@${npm_package_config_host}:~/public/ --delete-after",
     "rsync:mocks": "cross-env rsync -avPx dist/node/* ${npm_package_name}@${npm_package_config_host}:~/node --delete-after",
     "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
+    "storybook:mock-api": "cross-env MOCK_API=true npm run storybook",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
   "dependencies": {
@@ -53,6 +54,6 @@
     "seng-scss": "^1.2.5"
   },
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.27"
+    "vuepress": "^2.0.0-beta.32"
   }
 }

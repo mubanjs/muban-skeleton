@@ -1,4 +1,5 @@
 import { readFile } from "fs/promises";
+
 import requireFromString from "require-from-string";
 
 const NS = "MubanPagePlugin";

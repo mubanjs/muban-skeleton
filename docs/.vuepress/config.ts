@@ -15,9 +15,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     // displayAllHeaders: true,
     sidebarDepth: 3,
     sidebar: {
-
       '/guide/': [
-        '', // getting started
         'components',
         'pages',
         'scripts',

@@ -1,18 +1,19 @@
 const CSS_TEST = /\.css$/;
 const SCSS_TEST = /\.(scss|sass)$/;
 
+const ENABLE_MOCK_API_MIDDLEWARE = process.env.MOCK_API === "true";
+
 module.exports = {
   core: {
     builder: "webpack5",
   },
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   staticDirs: ["../public", "../src/pages/public", "static"],
+  addons: ["@storybook/addon-essentials", "@mediamonks/muban-storybook-addon-transition"],
   async webpackFinal(config) {
-    const { getNestedConfigs, createConfig, createFindPlugin } = await import(
-      "@pota/webpack-skeleton/.pota/webpack/util.js"
-    );
+    const { createFindPlugin } = await import("@pota/webpack-skeleton/.pota/webpack/util.js");
 
-    const [mubanConfig] = await createConfig(await getNestedConfigs());
+    const [mubanConfig] = await getConfigs();
 
     const findPlugin = createFindPlugin(mubanConfig);
     const miniCssExtractLoader = findPlugin("MiniCssExtractPlugin").constructor.loader;
@@ -38,4 +39,21 @@ module.exports = {
       plugins: [...config.plugins, findPlugin("DefinePlugin")],
     };
   },
+  async managerWebpack(config) {
+    if (!ENABLE_MOCK_API_MIDDLEWARE) return config;
+
+    const [, , mocksConfig] = await getConfigs();
+
+    return [config, mocksConfig];
+  },
 };
+
+async function getConfigs() {
+  const { getNestedConfigs, createConfig } = await import(
+    "@pota/webpack-skeleton/.pota/webpack/util.js"
+  );
+
+  return createConfig(await getNestedConfigs(), {
+    "mock-api": ENABLE_MOCK_API_MIDDLEWARE,
+  });
+}

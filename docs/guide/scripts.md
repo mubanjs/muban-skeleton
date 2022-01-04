@@ -14,6 +14,10 @@ It runs on a pair of webpack compilers: one for the Muban application bundle and
 
 The dev server runs on `http://localhost:9000`.
 
+### `npm run dev -- --mock-api`
+
+Runs the development server with an mock API middleware compiling the mocks from the `/mocks` directory.
+
 ### `npm run build -- --watch`
 
 Runs the same build process as the normal `npm run build`, but now in watch mode, enjoying fast recompilations when
@@ -21,14 +25,17 @@ your local files change.
 
 ### `npm run build -- --debug --watch`
 
-Runs the same build process as the normal `npm run build -- --debug`, but now in watch mode, enjoying fast recompilations
-when your local files change.
+Runs the same build process as the normal `npm run build -- --watch`, but the output code is without production optimizations.
 
 Useful for live local development against your CMS rendered pages.
 
 ### `npm run storybook`
 
 Develop and test your components in storybook.
+
+### `npm run storybook:mock-api`
+
+Same as `npm run storybook`, but with the mock API bundling and middleware enabled.
 
 ## Builds
 
@@ -47,13 +54,13 @@ Generates a debug build without any minification or other optimizations. Useful 
 where you are not deploying to production yet, but want to see your changes on a (local) integration server as soon
 as possible.
 
+### `npm run build -- --mock-api`
+
+In addition to the standard build, generates a node server for running [monck](https://github.com/mediamonks/monck) mocks.
+
 ### `npm run storybook:build`
 
 Make a deployable storybook build to showcase your components to others.
-
-### `npm run build-mock-server`
-
-Generates a node server for running [monck](https://github.com/mediamonks/monck) mocks.
 
 > NOTE: if you are unsure about what options you can pass to the `dev` or `build` scripts, you can always get more information
 > by passing the `--help` argument. e.g. `npm run build -- --help`
