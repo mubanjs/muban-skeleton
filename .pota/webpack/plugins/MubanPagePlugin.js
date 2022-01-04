@@ -3,13 +3,6 @@ import requireFromString from "require-from-string";
 
 const NS = "MubanPagePlugin";
 
-let cachedTemplate;
-
-async function getHTMLTemplate(path) {
-  cachedTemplate = cachedTemplate ?? (await readFile(path, { encoding: "utf-8" }));
-  return cachedTemplate;
-}
-
 function replaceTemplateVars(template, variables = {}) {
   let updatedTemplate = String(template);
 
@@ -22,6 +15,7 @@ function replaceTemplateVars(template, variables = {}) {
 
 export default class MubanPagePlugin {
   options;
+  cache = new WeakMap();
 
   constructor(options) {
     this.options = options;
@@ -35,55 +29,82 @@ export default class MubanPagePlugin {
     compiler.hooks.thisCompilation.tap(NS, (compilation) => {
       compilation.hooks.processAssets.tapPromise(
         { name: NS, stage: Compilation.PROCESS_ASSETS_STAGE_DERIVED },
-        async () => {
+        async (assets) => {
           const [chunk] = compilation.chunks;
           const [file] = chunk.files;
 
-          const source = compilation.getAsset(file).source.source();
+          const asset = assets[file];
 
-          let module;
+          if (!this.cache.has(asset)) {
+            const compilationHash = compilation.hash;
 
-          try {
-            module = requireFromString(source);
-          } catch (error) {
-            console.log();
-            console.error(`Error occurred loading "${file}"`);
-            console.error(error);
-            return; // bail
-          }
-
-          const { pages = {}, appTemplate = () => "" } = module ?? {};
-
-          const compilationHash = compilation.hash;
-
-          const publicPath = compilation.getAssetPath(compilation.outputOptions.publicPath, {
-            hash: compilationHash,
-          });
-
-          const htmlTemplate = await getHTMLTemplate(this.options.template);
-
-          for (const [page, pageModule] of Object.entries(pages)) {
-            if (!pageModule || !("data" in pageModule)) continue;
-
-            const asset = `${page}.html`;
+            const publicPath = compilation.getAssetPath(compilation.outputOptions.publicPath, {
+              hash: compilationHash,
+            });
 
             try {
-              const pageTemplate = replaceTemplateVars(htmlTemplate, {
-                content: appTemplate(pageModule.data()),
-                publicPath,
-              });
+              const pageAssets = await this.generatePageAssets(asset.source(), publicPath, sources);
 
-              compilation.emitAsset(`${page}.html`, new sources.RawSource(pageTemplate));
+              this.cache.set(asset, pageAssets);
             } catch (error) {
               console.log();
-              console.error(`Error occurred emitting "${asset}":`);
+              console.error(`Error settings new page assets:`);
               console.error(error);
             }
           }
 
-          compilation.deleteAsset(file);
+          for (const [page, source] of this.cache.get(asset)) {
+            assets[page] = source;
+          }
         }
       );
     });
+  }
+
+  cachedTemplate = undefined;
+  async getHtmlTemplate() {
+    this.cachedTemplate =
+      this.cachedTemplate ?? (await readFile(this.options.template, { encoding: "utf-8" }));
+    return this.cachedTemplate;
+  }
+
+  async generatePageAssets(contextSource, publicPath, sources) {
+    const { pages, appTemplate } = this.getContextModule(contextSource);
+
+    const htmlTemplate = await this.getHtmlTemplate();
+
+    return Object.entries(pages)
+      .map(([page, m]) => {
+        const asset = `${page}.html`;
+
+        try {
+          const pageTemplate = replaceTemplateVars(htmlTemplate, {
+            content: appTemplate(m.data()),
+            publicPath,
+          });
+
+          return [asset, new sources.RawSource(pageTemplate)];
+        } catch (error) {
+          console.log();
+          console.error(`Error occurred processing "${asset}":`);
+          console.error(error);
+          return null;
+        }
+      })
+      .filter(Boolean);
+  }
+
+  getContextModule(source) {
+    const fallback = { pages: {}, appTemplate: () => "" };
+
+    try {
+      return { ...fallback, ...requireFromString(source) };
+    } catch (error) {
+      console.log();
+      console.error(`Error occurred loading "${file}"`);
+      console.error(error);
+
+      return fallback;
+    }
   }
 }
