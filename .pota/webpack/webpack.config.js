@@ -169,7 +169,7 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
     ],
   };
 }
-function createPagesConfig(config, { mainName, pagesName }) {
+function createPagesConfig(config, { pagesName }) {
   const definePlugin = createFindPlugin(config)('DefinePlugin');
 
   const source = join(paths.source, './pages');
@@ -181,7 +181,6 @@ function createPagesConfig(config, { mainName, pagesName }) {
     mode: 'development', // we do not care about the size of the output, it just needs to be built fast
     devtool: false, // source maps will not be used
     name: pagesName, // required so the `devServer` can find the correct compilation
-    dependencies: [mainName], // will make webpack wait for the first
     target: 'node',
     entry: { pages: resolve(source, '_main.ts') },
     output: {
@@ -306,7 +305,7 @@ export default async function createConfig(config, options = {}) {
     // the "main" configuration for bundling the muban app
     createMainConfig(config, { mainName, pagesName, mockApi }),
     // the "pages" configuration for bundling the static pages (also used to serve development pages)
-    (preview || isDev) && createPagesConfig(config, { mainName, pagesName }),
+    (preview || isDev) && createPagesConfig(config, { pagesName }),
     mockApi && (await createMockConfig(config, { mocksName, isDev })),
   ].filter(Boolean);
 }
