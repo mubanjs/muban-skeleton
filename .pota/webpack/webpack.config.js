@@ -183,7 +183,7 @@ function createPagesConfig(config, { mainName, pagesName }) {
     name: pagesName, // required so the `devServer` can find the correct compilation
     dependencies: [mainName], // will make webpack wait for the first
     target: 'node',
-    entry: { pages: resolve(source, 'main.ts') },
+    entry: { pages: resolve(source, '_main.ts') },
     output: {
       ...config.output,
       // we are importing the module as a string, so we must bundle it as `commonjs`
