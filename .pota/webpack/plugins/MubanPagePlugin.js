@@ -4,6 +4,33 @@ import requireFromString from "require-from-string";
 
 const NS = "MubanPagePlugin";
 
+function isString(value) {
+  return typeof value === "string";
+}
+
+function isFunction(value) {
+  return typeof value === "function";
+}
+
+function stringifyAttributes(attributes) {
+  return Object.entries(attributes)
+    .map(([key, value]) => `${String(key)}="${String(value)}"`)
+    .join(" ");
+}
+
+function convertObjectsToTags(objectOrArray, tag) {
+  const arr = Array.isArray(objectOrArray) ? objectOrArray : [objectOrArray];
+
+  switch (tag) {
+    case "link":
+      return arr.map((attributes) => `<link ${stringifyAttributes(attributes)} />`);
+    case "meta":
+      return arr.map((attributes) => `<meta ${stringifyAttributes(attributes)} >`);
+    default:
+      return [];
+  }
+}
+
 function replaceTemplateVars(template, variables = {}) {
   let updatedTemplate = String(template);
 
@@ -12,6 +39,19 @@ function replaceTemplateVars(template, variables = {}) {
   }
 
   return updatedTemplate;
+}
+
+function replaceTemplateTitle(template, title) {
+  return template.replace(/<title>(.*?)<\/title>/, (match, g0) => match.replace(g0, title));
+}
+
+function insertHeadTags(template, headTags) {
+  const headClosingTagIndex = template.indexOf("</head>");
+
+  const beforeHeadClosingTag = template.slice(0, headClosingTagIndex);
+  const afterHeadClosingTag = template.slice(headClosingTagIndex); // includes the head closing tag
+
+  return [beforeHeadClosingTag, ...headTags, afterHeadClosingTag].join("\n");
 }
 
 export default class MubanPagePlugin {
@@ -46,6 +86,7 @@ export default class MubanPagePlugin {
             try {
               const pageAssets = await this.generatePageAssets(asset.source(), publicPath, sources);
 
+              this.cache = new WeakMap();
               this.cache.set(asset, pageAssets);
             } catch (error) {
               console.log();
@@ -79,10 +120,25 @@ export default class MubanPagePlugin {
         const asset = `${page}.html`;
 
         try {
-          const pageTemplate = replaceTemplateVars(htmlTemplate, {
+          let pageTemplate = replaceTemplateVars(htmlTemplate, {
             content: appTemplate(m.data()),
             publicPath,
           });
+
+          if ("title" in m && isString(m.title)) {
+            pageTemplate = replaceTemplateTitle(pageTemplate, m.title);
+          }
+
+          const newHeadTags = [];
+
+          if ("meta" in m && isFunction(m.meta)) {
+            newHeadTags.push(...convertObjectsToTags(m.meta(), "meta"));
+          }
+          if ("link" in m && isFunction(m.link)) {
+            newHeadTags.push(...convertObjectsToTags(m.link(), "link"));
+          }
+
+          if (newHeadTags.length > 0) pageTemplate = insertHeadTags(pageTemplate, newHeadTags);
 
           return [asset, new sources.RawSource(pageTemplate)];
         } catch (error) {
