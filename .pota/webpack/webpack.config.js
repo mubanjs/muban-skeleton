@@ -289,6 +289,7 @@ async function createMockConfig(config, { mocksName, isDev }, options) {
         ],
       }),
       !isDev && new EmitMockMainPlugin(),
+      !isDev && new CopyEmittedAssetsPlugin(/^static\//, config.output.path),
     ].filter(Boolean),
   };
 }
