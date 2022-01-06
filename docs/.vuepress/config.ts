@@ -16,6 +16,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     sidebarDepth: 3,
     sidebar: {
       '/guide/': [
+        'README.md',
         'components',
         'pages',
         'scripts',

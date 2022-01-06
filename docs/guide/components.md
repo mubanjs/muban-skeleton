@@ -266,7 +266,7 @@ The story file uses `PascalCase`, mimicking the TypeScript component, with a `.s
 ```ts
 // MyComponent.stories.ts
 
-import type { Story } from '@muban/storybook/dist/client/preview/types-6-0';
+import type { Story } from '@muban/storybook';
 import type { MyComponentTemplateProps } from './MyComponent.template';
 import { MyComponent } from './MyComponent';
 import { myComponentTemplate } from './MyComponent.template';
@@ -278,13 +278,17 @@ export default {
   },
 };
 
-export const Default: Story<ButtonTemplateProps> = () => ({
-  component: MyComponent,
-  template: myComponentTemplate,
-});
-Default.args = {
-  prop1: 'hello',
-  prop2: true,
-  childProp: 'awesome',
+export const Default: Story<ButtonTemplateProps> = {
+  render() {
+    return {
+      component: MyComponent,
+      template: myComponentTemplate,
+    }
+  },
+  args: {
+    prop1: 'hello',
+    prop2: true,
+    childProp: 'awesome',
+  }
 };
 ```

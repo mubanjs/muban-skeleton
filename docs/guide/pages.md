@@ -18,7 +18,7 @@ To summarize before we start, the page file:
 - Is located in the `/src/pages/` folder.
 - Has its filename written in `snake-case.ts`.
 - Has to export a `data` function that should return an object according to the `AppTemplateProps` shape.
-- Can conditionally export a function that returns metadata for the page `<head>`.
+- Can optionally export additional info that contains information for the page's `<head>`.
 - Can exist in sub-folders (e.g. `/src/pages/about/contacts.ts`).
 - Will be generated as a `.html` file with the same name/path.
 
@@ -29,9 +29,31 @@ In short, it should look like this.
 
 import { AppTemplateProps } from '../App.template';
 
+// this is required
 export const data = (): AppTemplateProps => ({
   // ... page data
 });
+
+// and some optional exports 
+
+// is added as <title>The Page Title</title>
+export const title = 'The Page Title';
+
+// is added as <meta name="description" content="The page description" >
+export const meta = (): AppTemplateProps => ([
+  { 
+    name: 'description',
+    content: 'The page description'
+  }
+]);
+
+// is added as <link rel="stylesheet" href="some-css-file.css" />
+export const link = (): AppTemplateProps => ([
+  {
+    rel: 'stylesheet',
+    href: 'some-css-file.css'
+  }
+]);
 ```
 
 ::: tip Ignoring files and folders

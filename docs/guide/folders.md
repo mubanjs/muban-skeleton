@@ -5,10 +5,11 @@ A list of the folders and most important files inside a standard Muban project.
 - `.storybook/` – Contains the
   [storybook configuration](https://storybook.js.org/docs/react/configure/overview).
 
-- `dist/` – Contains the output of a `build`.
+- `dist/` – Contains the output of the `build` commands.
   - `site/` – The website assets, can be moved to the CMS or deployed when a `build:preview` was
     used.
   - `node/` – Contains a node-js project to be deployed to offer a API mock service.
+  - `storybook/` – Contains a storybook build.
 - `mocks/` – Contains API mock files used by
   [@mediamonks/monck](https://github.com/mediamonks/monck#readme).
 
@@ -27,7 +28,8 @@ A list of the folders and most important files inside a standard Muban project.
     There's also a `layouts` folder (which can be seen as page templates).
   - `pages/` – Contains the page data files, used to render and preview the website pages. Pages
     are rendered using the templates, and the `src/App.template.ts` is the entrypoint for all.
-    - `main.ts` – The entry point for the pages bundle, re-exports the `App.template.ts` and exports
+    - `_main.ts` – The entry point for the pages bundle, re-exports the `App.template.ts` and 
+      exports
       a `pages` object containing the `data` functions for each page.
     - `public/` – Contains the base `.html` use to generate each page and a `static/` directory for assets
       that come from the CMS. Contents will only be copied over to the `dist` folder when doing a preview build.

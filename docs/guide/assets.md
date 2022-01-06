@@ -116,8 +116,8 @@ These files exist in a single location, with 2 dedicated folders based on the us
 
 These files will be copied over as is to the dist folder.
 
-- `public/` > `dist/`
-- `public/static/` > `dist/static/`
+- `public/` > `dist/site/`
+- `public/static/` > `dist/site/static/`
 
 ### Asset imports / references
 
@@ -185,7 +185,7 @@ These files will be copied over as is to the dist folder.
    - `src/pages/static/imags/foo.jpg` > `dist/site/static/images/component-test.68df72aa.jpg`
    - `src/components/atoms/image-test/mocks/mock-component-test.jpg` >
      `dist/site/static/images/mock-component-test.38df32ab.jpg`
-2. Copy: `src/pages/public/static/` > `dist/static`
+2. Copy: `src/pages/public/static/` > `dist/site/static`
 
 ::: warning
 
@@ -231,8 +231,6 @@ props: {
   dataImage: mockTest;
 }
 ```
-
-``
 
 ::: warning publicPath
 
