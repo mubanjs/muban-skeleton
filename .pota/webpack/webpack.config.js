@@ -168,7 +168,7 @@ function createMainConfig(config, { mainName, pagesName, mockApi }) {
     ],
   };
 }
-function createPagesConfig(config, { pagesName }) {
+function createPagesConfig(config, { pagesName, isDev }, options) {
   const definePlugin = createFindPlugin(config)('DefinePlugin');
 
   const source = join(paths.source, './pages');
@@ -177,11 +177,17 @@ function createPagesConfig(config, { pagesName }) {
   /** @type {import('webpack').Configuration} */
   return {
     ...config,
-    mode: 'development', // we do not care about the size of the output, it just needs to be built fast
-    devtool: false, // source maps will not be used
     name: pagesName, // required so the `devServer` can find the correct compilation
     target: 'node',
+    mode: 'development', // we do not care about the size of the output, it just needs to be built fast
+    devtool: false, // source maps will not be used
     entry: { pages: resolve(source, '_main.ts') },
+
+    cache: options.cache && {
+      type: 'filesystem',
+      name: `${pagesName}-${isDev ? 'development' : 'production'}`,
+    },
+
     output: {
       ...config.output,
       // we are importing the module as a string, so we must bundle it as `commonjs`
@@ -216,7 +222,7 @@ function createPagesConfig(config, { pagesName }) {
   };
 }
 
-async function createMockConfig(config, { mocksName, isDev }) {
+async function createMockConfig(config, { mocksName, isDev }, options) {
   const definePlugin = createFindPlugin(config)('DefinePlugin');
 
   const entry = Object.fromEntries(
@@ -228,11 +234,18 @@ async function createMockConfig(config, { mocksName, isDev }) {
   /** @type {import('webpack').Configuration} */
   return {
     ...config,
-    entry,
+    name: mocksName, // required so the `devServer` can find the correct compilation
     target: 'node',
-    name: mocksName,
     mode: 'development', // we do not care about the size of the output, it just needs to be built fast
     devtool: false, // source maps will not be used
+
+    entry,
+
+    cache: options.cache && {
+      type: 'filesystem',
+      name: `${mocksName}-${isDev ? 'development' : 'production'}`,
+    },
+
     output: {
       ...config.output,
       path: MOCKS_OUTPUT_DIR,
@@ -303,7 +316,7 @@ export default async function createConfig(config, options = {}) {
     // the "main" configuration for bundling the muban app
     createMainConfig(config, { mainName, pagesName, mockApi }),
     // the "pages" configuration for bundling the static pages (also used to serve development pages)
-    (preview || isDev) && createPagesConfig(config, { pagesName }),
-    mockApi && (await createMockConfig(config, { mocksName, isDev })),
+    (preview || isDev) && createPagesConfig(config, { pagesName, isDev }, options),
+    mockApi && (await createMockConfig(config, { mocksName, isDev }, options)),
   ].filter(Boolean);
 }
