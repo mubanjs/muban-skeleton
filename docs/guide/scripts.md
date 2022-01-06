@@ -70,7 +70,9 @@ Make a deployable storybook build to showcase your components to others.
 ### previewing the build
 
 Sometimes you want to test the build output `npm run build -- --preview` to locally debug minification & optimizations applied by webpack in production mode.
-Instead of shipping adding a custom server or dependency to support this, we instead starting up a server through the use of `npx`.
+Instead of shipping a custom server or a dependency to support this, we are recommending to utilize existing packages through `npx`:
+
+> serve `./dist/site` directory
 
 ```bash
 npx http-server ./dist/site
@@ -80,6 +82,12 @@ npx http-server ./dist/site
 
 ```bash
 npx create-ssl-certificate && npx http-server -S -C ssl.crt -K ssl.key
+```
+
+> include running the built mocks from `./dist/node/mocks`
+
+```bash
+npx concurrently "npx monck -d ./dist/node/mocks -p 9002" "npx http-server ./dist/site --proxy http://localhost:9002"
 ```
 
 ### uploading the build to a remote server
