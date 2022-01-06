@@ -89,6 +89,7 @@ The skeleton provides two scripts to support uploading both the preview site and
 
 - `npm run rsync` - upload the preview site
 - `npm run rsync:mocks` - upload the mocks node server
+- `npm run rsync:storybook` - upload the storybook build
 
 ### Formatting/Linting
 

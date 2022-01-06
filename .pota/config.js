@@ -10,6 +10,7 @@ export default {
     "apply-storybook-patches",
     "rsync",
     "rsync:mocks",
+    "rsync:storybook",
   ],
   omit: ["public/index.html", "public/manifest.json", "public/robots.txt", "public/favicon.ico"],
 };

@@ -26,6 +26,7 @@
     "docs:dev": "vuepress dev docs",
     "rsync": "cross-env rsync -avPx dist/site/* ${npm_package_name}@${npm_package_config_host}:~/public/ --delete-after",
     "rsync:mocks": "cross-env rsync -avPx dist/node/* ${npm_package_name}@${npm_package_config_host}:~/node --delete-after",
+    "rsync:storybook": "cross-env rsync -avPx dist/storybook/* ${npm_package_name}@${npm_package_config_host}:~/public/storybook/ --delete-after",
     "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
     "storybook:mock-api": "cross-env MOCK_API=true npm run storybook",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
