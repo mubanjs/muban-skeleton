@@ -3,9 +3,9 @@ const NS = "EmitMockMainPlugin";
 export default class EmitMockMainPlugin {
   get source() {
     return `
-import { createServer } from '@mediamonks/monck';
+import { execSync } from "child_process";
 
-createServer({ useUnixSocket: true });
+execSync('npx @mediamonks/monck -u', { stdio: [0, 1, 2] });
   `;
   }
 
@@ -17,7 +17,7 @@ createServer({ useUnixSocket: true });
       compilation.hooks.processAssets.tap(
         { name: NS, stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL },
         (assets) => {
-          assets["index.js"] = new sources.RawSource(this.source);
+          assets["main.mjs"] = new sources.RawSource(this.source);
         }
       );
     });

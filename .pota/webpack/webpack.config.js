@@ -12,7 +12,6 @@ import { createMockMiddleware } from '@mediamonks/monck';
 
 import MubanPagePlugin from './plugins/MubanPagePlugin.js';
 import EmitMockMainPlugin from './plugins/EmitMockMainPlugin.js';
-import EmitPackageJsonPlugin from './plugins/EmitPackageJsonPlugin.js';
 
 const CSS_TEST = /\.css$/;
 const SCSS_TEST = /\.(scss|sass)$/;
@@ -277,7 +276,6 @@ async function createMockConfig(config, { mocksName, isDev }) {
         ],
       }),
       !isDev && new EmitMockMainPlugin(),
-      !isDev && new EmitPackageJsonPlugin(),
     ].filter(Boolean),
   };
 }
