@@ -32,7 +32,7 @@
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
   "dependencies": {
-    "@muban/storybook": "^7.0.0-alpha.15",
+    "@muban/storybook": "^7.0.0-alpha.18",
     "@storybook/builder-webpack5": "^6.4.8",
     "@storybook/manager-webpack5": "^6.4.8",
     "null-loader": "^4.0.1",
