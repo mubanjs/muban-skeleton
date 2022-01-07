@@ -4,7 +4,7 @@ export const data = (): AppTemplateProps => ({
   layout: {
     name: 'custom-layout',
     props: {
-      message: `I'm fine`,
+      message: "I'm fine",
     },
   },
 });

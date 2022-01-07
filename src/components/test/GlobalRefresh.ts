@@ -34,7 +34,7 @@ export const GlobalRefresh = defineComponent({
     const updatedContent = ref(
       refs.child.component?.props.content?.replace(
         /##([a-z\d]+)##/gi,
-        (match, content) => `<span data-component="tooltip"><strong>${content}</strong></span>`,
+        (_, content) => `<span data-component="tooltip"><strong>${content}</strong></span>`,
       ) ?? '',
     );
 

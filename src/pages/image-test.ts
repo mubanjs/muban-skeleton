@@ -9,7 +9,7 @@ export const data = (): AppTemplateProps => ({
         {
           name: 'image-test',
           props: {
-            dataImage: `${process.env.PUBLIC_PATH}/static/images/mock-test.jpg`,
+            dataImage: `${process.env.PUBLIC_PATH}static/img/mock-test.jpg`,
           },
         },
         {

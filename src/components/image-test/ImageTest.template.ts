@@ -17,12 +17,12 @@ export function imageTestTemplate({ dataImage }: ImageTestProps): ComponentTempl
     </div>
     <div>
       <h1>CSS Image</h1>
-      <div class="css-image"></div>
+      <div alt="css" class="css-image"></div>
     </div>
     <div>
       <h1>Template Image</h1>
       <img
-        src="${process.env.PUBLIC_PATH}/static/images/template-test.jpg"
+        src="${process.env.PUBLIC_PATH}static/img/template-test.jpg"
         alt="A fighter pilot inside of a plane."
       />
     </div>

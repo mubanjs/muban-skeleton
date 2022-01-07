@@ -1,7 +1,7 @@
 // Correctly set `seng-scss` assetPath
 $pathAsset: "~assets";
-$pathFont: 'fonts'; // must be the same as config/paths.webpackAssetFonts
-$pathImage: 'images'; // must be the same as config/paths.webpackAssetImages
+$pathFont: "fonts"; // must be the same as config/paths.webpackAssetFonts
+$pathImage: "images"; // must be the same as config/paths.webpackAssetImages
 
 // Fonts
 $baseFont: Arial, sans-serif;

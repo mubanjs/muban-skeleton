@@ -1,0 +1,18 @@
+--- node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js	2021-11-29 17:55:34.364908317 +0200
++++ patches/iframe-webpack.config.js	2021-11-29 18:04:35.766157565 +0200
+@@ -113,7 +113,7 @@
+     if (stories.length > 0) {
+       var storyTemplate = await (0, _coreCommon.readTemplate)(_path.default.join(__dirname, 'virtualModuleStory.template.js'));
+ 
+-      var _storiesFilename = _path.default.resolve(_path.default.join(workingDir, `generated-stories-entry.js`));
++      var _storiesFilename = _path.default.resolve(_path.default.join(workingDir, `generated-stories-entry.cjs`));
+ 
+       virtualModuleMapping[_storiesFilename] = (0, _coreCommon.interpolate)(storyTemplate, {
+         frameworkImportPath: frameworkImportPath
+@@ -227,4 +227,4 @@
+   };
+ };
+ 
+-exports.default = _default;
+\ No newline at end of file
++exports.default = _default;

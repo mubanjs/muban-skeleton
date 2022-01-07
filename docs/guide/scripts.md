@@ -1,80 +1,111 @@
 # Scripts
 
 The `package.json` is filled with scripts you can use to do all sorts of things in your project. The most important
-ones are described below. 
+ones are described below.
 
-## Development 
+## Development
 
-### `yarn dev`
+### `npm run dev`
 
 Your goto script when running local development against local page templates with live and hot reloading when any of
 your code changes.
 
-- runs the code bundle with `webpack-dev-middleware`, hot-reloading your JS and CSS changes
-- runs the server bundle to generate templates and serves them from express, live-reloading your HTML changes
+It runs on a pair of webpack compilers: one for the Muban application bundle and one for converting page TypeScript files into HTML files.
 
 The dev server runs on `http://localhost:9000`.
 
-### `yarn build --watch`
+### `npm run dev -- --mock-api`
 
-Runs the same build process as the normal `yarn build`, but now in watch mode, enjoying super fast recompilations when
+Runs the development server with an mock API middleware compiling the mocks from the `/mocks` directory.
+
+### `npm run build -- --watch`
+
+Runs the same build process as the normal `npm run build`, but now in watch mode, enjoying fast recompilations when
 your local files change.
 
- 
-### `yarn build:debug -- watch`
+### `npm run build -- --debug --watch`
 
-Runs the same build process as the normal `yarn build:debug`, but now in watch mode, enjoying super fast recompilations
-when your local files change.
+Runs the same build process as the normal `npm run build -- --watch`, but the output code is without production optimizations.
 
-Very useful for live local development against your CMS rendered pages.
+Useful for live local development against your CMS rendered pages.
 
-### `yarn storybook`
+### `npm run storybook`
 
 Develop and test your components in storybook.
 
+### `npm run storybook:mock-api`
+
+Same as `npm run storybook`, but with the mock API bundling and middleware enabled.
 
 ## Builds
 
-### `yarn build`
+### `npm run build`
 
-Creates a distribution build that outputs the JS and CSS files. Used in CI to deploy to your production websites.
+Creates a distribution build that outputs the JavaScript, CSS and bundled asset files. Used in CI to deploy to your production websites.
 
-### `yarn build:preview`
+### `npm run build -- --preview`
 
 Generates a full preview package including generated HTML files to upload to a preview server that's not connected to
 any backend.
- 
-### `yarn build:debug`
 
-Generates a quick debug build without any minification and other optimizations. Useful for quick integration tests
-where you're not deploying to production yet, but want to see your changes on a (local) integration server as fast
+### `npm run build -- --debug`
+
+Generates a debug build without any minification or other optimizations. Useful for integration tests
+where you are not deploying to production yet, but want to see your changes on a (local) integration server as soon
 as possible.
 
-### `yarn storybook:build`
+### `npm run build -- --mock-api`
+
+In addition to the standard build, generates a node server for running [monck](https://github.com/mediamonks/monck) mocks.
+
+### `npm run storybook:build`
 
 Make a deployable storybook build to showcase your components to others.
 
-### `yarn preview`
-
-Start a local server to see the result of `yarn build:preview`
-
-The dev server runs on `http://localhost:9001`.
-
+> NOTE: if you are unsure about what options you can pass to the `dev` or `build` scripts, you can always get more information
+> by passing the `--help` argument. e.g. `npm run build -- --help`
 
 ## Others
 
-### `yarn test`
+### previewing the build
 
-> TODO
+Sometimes you want to test the build output `npm run build -- --preview` to locally debug minification & optimizations applied by webpack in production mode.
+Instead of shipping a custom server or a dependency to support this, we are recommending to utilize existing packages through `npx`:
 
-### `yarn test:e2e`
+> serve `./dist/site` directory
 
-> TODO
+```bash
+npx http-server ./dist/site
+```
 
-### `yarn lint`
+> with SSL/TLS enabled (https)
 
-> TODO
+```bash
+npx create-ssl-certificate && npx http-server -S -C ssl.crt -K ssl.key
+```
 
-### `yarn analyze`
+> include running the built mocks from `./dist/node/mocks`
 
-> TODO
+```bash
+npx concurrently "npx monck -d ./dist/node/mocks -p 9002" "npx http-server ./dist/site --proxy http://localhost:9002"
+```
+
+### uploading the build to a remote server
+
+If you do not have a backend setup to host your components, you likely still want to deploy your changes to a remote server.
+The skeleton provides two scripts to support uploading both the preview site and the [monck](https://github.com/mediamonks/monck) mocks.
+
+- `npm run rsync` - upload the preview site
+- `npm run rsync:mocks` - upload the mocks node server
+- `npm run rsync:storybook` - upload the storybook build
+
+### Formatting/Linting
+
+| Script            | Description                                                                |
+| ----------------- | -------------------------------------------------------------------------- |
+| **`typecheck`**   | Checks for type errors and unused variables/types in the source directory. |
+| **`fix`**         | Executes all `fix:*` and `format commands in sequence.                     |
+| **`fix:eslint`**  | Executes `eslint:lint` and fixes fixable errors.                           |
+| **`format`**      | Formats the source files using `prettier`.                                 |
+| **`lint`**        | Executes all `lint:*` commands in sequence.                                |
+| **`lint:eslint`** | Lints the source files using `eslint`.                                     |

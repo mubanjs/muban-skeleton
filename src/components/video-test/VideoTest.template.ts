@@ -23,7 +23,7 @@ export function videoTestTemplate({ dataVideo }: VideoTestProps): ComponentTempl
     <div>
       <h2>Template Video</h2>
       <video controls>
-        <source type="video/mp4" src="${process.env.PUBLIC_PATH}/static/video/dummy-video-1.mp4" />
+        <source type="video/mp4" src="${process.env.PUBLIC_PATH}static/media/dummy-video-1.mp4" />
       </video>
     </div>
   </div>`;

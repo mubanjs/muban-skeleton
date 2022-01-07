@@ -1,4 +1,4 @@
-import type { Story } from '@muban/storybook/dist/client/preview/types-6-0';
+import type { Story } from '@muban/storybook/types-6-0';
 import { ImageTest } from './ImageTest';
 import { imageTestDefaultMockData } from './ImageTest.mocks';
 import type { ImageTestProps } from './ImageTest.template';
@@ -16,7 +16,7 @@ export const Default: Story<ImageTestProps> = () => ({
   template: imageTestTemplate,
 });
 Default.args = {
-  dataImage: `${process.env.PUBLIC_PATH}/static/images/mock-test.jpg`,
+  dataImage: `${process.env.PUBLIC_PATH}static/img/mock-test.jpg`,
 };
 
 export const Mock: Story<ImageTestProps> = Default.bind({});

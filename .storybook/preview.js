@@ -1,9 +1,9 @@
-import '../src/styles/main.scss';
-
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
 };
-
-// const sprite = document.createElement('img');
-// sprite.src = require('bootstrap-icons/bootstrap-icons.svg');
-// document.body.appendChild(sprite);

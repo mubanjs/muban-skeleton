@@ -1,4 +1,4 @@
-import type { Story } from '@muban/storybook/dist/client/preview/types-6-0';
+import type { Story } from '@muban/storybook/types-6-0';
 import { VideoTest } from './VideoTest';
 import { videoTestDefaultMockData } from './VideoTest.mocks';
 import type { VideoTestProps } from './VideoTest.template';
@@ -16,7 +16,7 @@ export const Default: Story<VideoTestProps> = () => ({
   template: videoTestTemplate,
 });
 Default.args = {
-  dataVideo: `${process.env.PUBLIC_PATH}/static/video/dummy-video-1.mp4`,
+  dataVideo: `${process.env.PUBLIC_PATH}static/media/dummy-video-1.mp4`,
 };
 
 export const Mock: Story<VideoTestProps> = Default.bind({});

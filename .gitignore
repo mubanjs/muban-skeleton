@@ -33,6 +33,5 @@ yarn-error.log*
 .stylelintcache
 
 /docs/.vuepress/dist
-
-/scripts/devserver/output/*
-/scripts/devserver/mocks/*
+/docs/.vuepress/.cache
+/docs/.vuepress/.temp
