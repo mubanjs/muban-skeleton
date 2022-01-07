@@ -31,12 +31,6 @@
     "storybook:mock-api": "cross-env MOCK_API=true npm run storybook",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
-  "husky": {
-    "hooks": {
-      "post-commit": "git reset",
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@muban/storybook": "^7.0.0-alpha.18",
     "@storybook/builder-webpack5": "^6.4.8",
