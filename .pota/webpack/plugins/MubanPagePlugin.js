@@ -157,8 +157,6 @@ export default class MubanPagePlugin {
     try {
       return { ...fallback, ...requireFromString(source) };
     } catch (error) {
-      console.log();
-      console.error(`Error occurred loading "${file}"`);
       console.error(error);
 
       return fallback;

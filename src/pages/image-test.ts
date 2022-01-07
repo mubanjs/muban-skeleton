@@ -3,7 +3,7 @@ import { imageTestDefaultMockData } from '../components/image-test/ImageTest.moc
 
 export const data = (): AppTemplateProps => ({
   layout: {
-    name: 'layout-default',
+    name: 'default-layout',
     props: {
       blocks: [
         {

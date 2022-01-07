@@ -1,3 +1,4 @@
+import type { ComponentTemplateResult } from '@muban/template';
 import { html, jsonScriptTemplate } from '@muban/template';
 import { buttonTemplate } from '../button/Button.template';
 import { cfA2Icon } from '../cf-a2-icon/CfA2Icon.template';
@@ -8,8 +9,11 @@ export type ToggleExpandProps = {
   isExpanded?: boolean;
 };
 
-export function toggleExpandTemplate({ isExpanded = false }: ToggleExpandProps, ref: unknown) {
-  return html`<div data-component="toggle-expand" dat-ref=${ref}>
+export function toggleExpandTemplate(
+  { isExpanded = false }: ToggleExpandProps,
+  ref?: string,
+): ComponentTemplateResult {
+  return html`<div data-component="toggle-expand" data-ref=${ref}>
     ${jsonScriptTemplate({ isExpanded })}
     <p>${cfA2Icon({ name: 'checkmark' })}</p>
     <p>

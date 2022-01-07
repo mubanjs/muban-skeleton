@@ -2,7 +2,7 @@ import type { AppTemplateProps } from '../../App.template';
 
 export const data = (): AppTemplateProps => ({
   layout: {
-    name: 'layout-custom',
+    name: 'custom-layout',
     props: {
       message: 'News Overview',
     },
@@ -10,7 +10,7 @@ export const data = (): AppTemplateProps => ({
 });
 
 // https://github.com/nfl/react-helmet
-export const meta = () => ({
+export const meta = (): Record<string, string> => ({
   title: 'foo',
   description: 'bar',
 });

@@ -1,12 +1,6 @@
 import type { RequestConfig } from '@mediamonks/monck';
-import path from 'path';
 import faker from 'faker';
-import { existsSync } from 'fs';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { imageTestDefaultMockData } from '../src/components/image-test/ImageTest.mocks'
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { imageTestDefaultMockData } from '../src/components/image-test/ImageTest.mocks';
 
 export default {
   'GET /user/info': (_, res) => {
@@ -35,20 +29,10 @@ export default {
       });
     }
   },
-
-  'GET /product/:id': (req, res) => {
-    const { id } = req.params;
-    const productPath = path.join(__dirname, `products/${id}.json`);
-    if (existsSync(productPath)) {
-      res.sendFile(productPath);
-    } else {
-      res.sendFile(path.join(__dirname, `products/default.json`));
-    }
-  },
   'GET /mock-test': (_, res) => {
     res.send({
       ...imageTestDefaultMockData,
-      test: 'hmr'
+      test: 'hmr',
     });
   },
 } as RequestConfig;
