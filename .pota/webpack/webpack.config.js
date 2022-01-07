@@ -12,6 +12,7 @@ import { createMockMiddleware } from '@mediamonks/monck';
 
 import MubanPagePlugin from './plugins/MubanPagePlugin.js';
 import EmitMockMainPlugin from './plugins/EmitMockMainPlugin.js';
+import CopyEmittedAssetsPlugin from './plugins/CopyEmittedAssetsPlugin.js';
 
 const CSS_TEST = /\.css$/;
 const SCSS_TEST = /\.(scss|sass)$/;
