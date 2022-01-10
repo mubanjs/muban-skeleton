@@ -39,10 +39,10 @@
     "require-from-string": "^2.0.2"
   },
   "peerDependencies": {
-    "@mediamonks/eslint-config-base": "^2.0.0-alpha.4",
-    "@mediamonks/monck": "^1.0.1",
+    "@muban/eslint-config": "^1.0.0-alpha.5",
+    "@mediamonks/monck": "^1.0.6",
     "@muban/muban": "^1.0.0-alpha.28",
-    "@muban/template": "^1.0.0-alpha.1",
+    "@muban/template": "^1.0.0-alpha.3",
     "@pota/cli": "^1.0.0-rc.6",
     "@pota/webpack-skeleton": "^1.0.0-rc.33",
     "@types/faker": "^5.5.9",
