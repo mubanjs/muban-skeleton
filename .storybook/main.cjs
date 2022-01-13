@@ -1,22 +1,22 @@
 const CSS_TEST = /\.css$/;
 const SCSS_TEST = /\.(scss|sass)$/;
 
-const ENABLE_MOCK_API_MIDDLEWARE = process.env.MOCK_API === "true";
+const ENABLE_MOCK_API_MIDDLEWARE = process.env.MOCK_API === 'true';
 
 module.exports = {
   core: {
-    builder: "webpack5",
+    builder: 'webpack5',
   },
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  staticDirs: ["../public", "../src/pages/public", "static"],
-  addons: ["@storybook/addon-essentials", "@mediamonks/muban-storybook-addon-transition"],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  staticDirs: ['../public', '../src/pages/public', 'static'],
+  addons: ['@storybook/addon-essentials', '@mediamonks/muban-storybook-addon-transition'],
   async webpackFinal(config) {
-    const { createFindPlugin } = await import("@pota/webpack-skeleton/.pota/webpack/util.js");
+    const { createFindPlugin } = await import('@muban/skeleton/.pota/webpack/utils.js');
 
     const [mubanConfig] = await getConfigs();
 
     const findPlugin = createFindPlugin(mubanConfig);
-    const miniCssExtractLoader = findPlugin("MiniCssExtractPlugin").constructor.loader;
+    const miniCssExtractLoader = findPlugin('MiniCssExtractPlugin').constructor.loader;
 
     return {
       ...config,
@@ -31,12 +31,12 @@ module.exports = {
           [String(CSS_TEST), String(SCSS_TEST)].includes(String(rule.test))
             ? {
                 ...rule,
-                use: rule.use.map((use) => (use === miniCssExtractLoader ? "style-loader" : use)),
+                use: rule.use.map((use) => (use === miniCssExtractLoader ? 'style-loader' : use)),
               }
             : rule
         ),
       },
-      plugins: [...config.plugins, findPlugin("DefinePlugin")],
+      plugins: [...config.plugins, findPlugin('DefinePlugin')],
     };
   },
   async managerWebpack(config) {
@@ -49,11 +49,10 @@ module.exports = {
 };
 
 async function getConfigs() {
-  const { getNestedConfigs, createConfig } = await import(
-    "@pota/webpack-skeleton/.pota/webpack/util.js"
-  );
+  const mubanSkeletonConfig = (await import('../.pota/config.js')).default;
 
-  return createConfig(await getNestedConfigs(), {
-    "mock-api": ENABLE_MOCK_API_MIDDLEWARE,
-  });
+  return mubanSkeletonConfig.meta.webpack(
+    { 'mock-api': ENABLE_MOCK_API_MIDDLEWARE },
+    mubanSkeletonConfig.meta.babel()
+  );
 }

@@ -2,15 +2,9 @@ import { readFile } from "fs/promises";
 
 import requireFromString from "require-from-string";
 
+import { isString, isFunction } from "../utils.js";
+
 const NS = "MubanPagePlugin";
-
-function isString(value) {
-  return typeof value === "string";
-}
-
-function isFunction(value) {
-  return typeof value === "function";
-}
 
 function stringifyAttributes(attributes) {
   return Object.entries(attributes)

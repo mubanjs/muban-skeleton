@@ -2,6 +2,10 @@
   "name": "@muban/skeleton",
   "version": "1.0.1",
   "type": "module",
+  "exports": {
+    ".": "./.pota/config.js",
+    "./.pota/webpack/utils.js": "./.pota/webpack/utils.js"
+  },
   "files": [
     "src",
     ".editorconfig",
@@ -33,6 +37,7 @@
   },
   "dependencies": {
     "@muban/storybook": "^7.0.0-alpha.18",
+    "@pota/authoring": "^1.0.0",
     "@storybook/builder-webpack5": "^6.4.8",
     "@storybook/manager-webpack5": "^6.4.8",
     "null-loader": "^4.0.1",
@@ -43,8 +48,7 @@
     "@mediamonks/monck": "^1.0.1",
     "@muban/muban": "^1.0.0-alpha.28",
     "@muban/template": "^1.0.0-alpha.1",
-    "@pota/cli": "^1.0.0-rc.6",
-    "@pota/webpack-skeleton": "^1.0.0-rc.33",
+    "@pota/webpack-skeleton": "^1.0.0-rc.45",
     "@types/faker": "^5.5.9",
     "clsx": "^1.1.1",
     "eslint-plugin-lit": "^1.6.1",
