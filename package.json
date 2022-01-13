@@ -21,7 +21,7 @@
     "host": "TODO: Add a host name."
   },
   "scripts": {
-    "apply-storybook-patches": "patch --forward node_modules/@storybook/builder-webpack5/dist/cjs/preview/iframe-webpack.config.js < patches/cjs-entry.patch",
+    "postinstall": "npx patch-package",
     "build": "pota build --output=dist/site",
     "build:preview": "npm run build -- --preview",
     "dev": "pota dev --port 9000",
@@ -31,15 +31,15 @@
     "rsync": "cross-env rsync -avPx dist/site/* ${npm_package_name}@${npm_package_config_host}:~/public/ --delete-after",
     "rsync:mocks": "cross-env rsync -avPx dist/node/* ${npm_package_name}@${npm_package_config_host}:~/node --delete-after",
     "rsync:storybook": "cross-env rsync -avPx dist/storybook/* ${npm_package_name}@${npm_package_config_host}:~/public/storybook/ --delete-after",
-    "storybook": "npm run apply-storybook-patches ; start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "storybook:mock-api": "cross-env MOCK_API=true npm run storybook",
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook"
   },
   "dependencies": {
     "@muban/storybook": "^7.0.0-alpha.18",
     "@pota/authoring": "^1.0.0",
-    "@storybook/builder-webpack5": "^6.4.8",
-    "@storybook/manager-webpack5": "^6.4.8",
+    "@storybook/builder-webpack5": "6.4.9",
+    "@storybook/manager-webpack5": "^6.4.9",
     "null-loader": "^4.0.1",
     "require-from-string": "^2.0.2"
   },
