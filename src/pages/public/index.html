@@ -10,13 +10,16 @@
 
   <meta http-equiv="Content-Security-Policy" content="script-src 'sha256-+OVgFCkyF2/rZ6qyfsNnIisCRI6dtMZw3w0Y4xiYagw=' 'strict-dynamic' https: 'unsafe-inline'; object-src 'none'; base-uri 'none';">
 
-  <link rel="stylesheet" href="{{publicPath}}static/css/main.css"/>
-</head>
-<body>
-  <div id="app">
-    {{content}}
-  </div>
+    <link rel="stylesheet" href="{{publicPath}}static/css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      {{content}}
+    </div>
 
-  <script>!function(){for(var o=document.querySelectorAll('html > head > meta[name="app-script"]'),t=0;t<o.length;t++){var e=o[t].getAttribute("content"),n=document.createElement("script");n.src=e,n.src.substr(0,window.location.origin.length)!==window.location.origin?window.console&&console.error("[ScriptLoader] Cannot load "+e+"."):document.body.appendChild(n)}}()</script>
-</body>
+    <!-- @formatter:off -->
+    <!-- prettier-ignore -->
+    <script>!function(){for(var o=document.querySelectorAll('html > head > meta[name="app-script"]'),t=0;t<o.length;t++){var e=o[t].getAttribute("content"),n=document.createElement("script");n.src=e,n.src.substr(0,window.location.origin.length)!==window.location.origin?window.console&&console.error("[ScriptLoader] Cannot load "+e+"."):document.body.appendChild(n)}}()</script>
+    <!-- @formatter:on -->
+  </body>
 </html>
