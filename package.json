@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@muban/storybook": "^7.0.0-alpha.18",
-    "@storybook/builder-webpack5": "^6.4.8",
+    "@storybook/builder-webpack5": "^6.4.13",
     "@storybook/manager-webpack5": "^6.4.8",
     "null-loader": "^4.0.1",
     "require-from-string": "^2.0.2"
