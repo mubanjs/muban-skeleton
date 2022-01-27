@@ -1,4 +1,5 @@
 import { readdir } from 'fs/promises';
+import { join } from 'path';
 
 export function isString(value) {
   return typeof value === "string";
