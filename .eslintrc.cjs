@@ -4,7 +4,7 @@ module.exports = {
   ],
   parserOptions: {
     extraFileExtensions: ['.cjs'],
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.mocks.json'],
   },
   rules: {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.ts", "./mocks/**/*.ts", "**/*.stories.ts"]}]

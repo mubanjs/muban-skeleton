@@ -1,21 +1,22 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { RequestConfig } from '@mediamonks/monck';
 import path from 'path';
 import { existsSync } from 'fs';
 
 export default {
-  'GET /products': (req, res) => {
-    res.send({
+  'GET /products': (_, ressponse) => {
+    ressponse.send({
       products: 'todo',
     });
   },
 
-  'GET /products/:id': (req, res) => {
-    const { id } = req.params;
+  'GET /products/:id': (request, response) => {
+    const { id } = request.params;
     const productPath = path.join(__dirname, `products/${id}.json`);
     if (existsSync(productPath)) {
-      res.sendFile(productPath);
+      response.sendFile(productPath);
     } else {
-      res.sendFile(path.join(__dirname, `products/default.json`));
+      response.sendFile(path.join(__dirname, `products/default.json`));
     }
   },
 } as RequestConfig;
