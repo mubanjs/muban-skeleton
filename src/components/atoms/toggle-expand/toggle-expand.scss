@@ -1,10 +1,10 @@
-[data-component="toggle-expand"] {
-  [data-ref="expand-content"] {
+[data-component='toggle-expand'] {
+  [data-ref='expand-content'] {
     display: none;
   }
 
   &.isExpanded {
-    [data-ref="expand-content"] {
+    [data-ref='expand-content'] {
       display: block;
     }
   }

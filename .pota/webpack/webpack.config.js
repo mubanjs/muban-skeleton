@@ -1,8 +1,6 @@
 import { join, resolve, extname, basename } from 'path';
 
-import * as paths from '@pota/webpack-skeleton/.pota/webpack/paths.js';
-import { createFindPlugin } from '@pota/webpack-skeleton/.pota/webpack/util.js';
-import { Recursive } from '@pota/shared/fs';
+import * as paths from '@pota/webpack-skeleton/.pota/paths.js';
 
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -14,38 +12,13 @@ import MubanPagePlugin from './plugins/MubanPagePlugin.js';
 import EmitMockMainPlugin from './plugins/EmitMockMainPlugin.js';
 import CopyEmittedAssetsPlugin from './plugins/CopyEmittedAssetsPlugin.js';
 
+import { isString, createFindPlugin, getNodeTargetRules, Recursive } from "./utils.js";
+
 const CSS_TEST = /\.css$/;
 const SCSS_TEST = /\.(scss|sass)$/;
 
 const MOCKS_DIR = resolve(paths.user, 'mocks');
 const MOCKS_OUTPUT_DIR = resolve(paths.user, 'dist', 'node');
-
-function isString(value) {
-  return typeof value === 'string';
-}
-
-function getNodeTargetRules(config) {
-  const imgTest = /\.(png|jpe?g|gif|webp|avif)(\?.*)?$/;
-  const svgTest = /\.(svg)(\?.*)?$/;
-  const mediaTest = /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/;
-  const tsTest = /\.tsx?$/;
-  const jsTest = /\.m?jsx?$/;
-
-  const permittedRules = [jsTest, tsTest, imgTest, svgTest, mediaTest].map((test) => String(test));
-
-  return [
-    {
-      oneOf: [
-        ...config.module.rules.filter((rule) => permittedRules.includes(String(rule.test))),
-        // `null-loader` will make sure to ignore any accidental imports to e.g. `.css` files
-        {
-          exclude: [/\.(js|mjs|ts)$/, /\.html$/, /\.json$/],
-          use: 'null-loader',
-        },
-      ],
-    },
-  ];
-}
 
 function createMainConfig(config, { mainName, pagesName, mockApi }) {
   let { plugins } = config;
