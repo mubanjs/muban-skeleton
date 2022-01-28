@@ -12,7 +12,6 @@
     ".pota",
     ".storybook",
     ".eslintrc.cjs",
-    "static",
     "patches",
     "mocks",
     "public",

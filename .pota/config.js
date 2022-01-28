@@ -25,8 +25,11 @@ export default define(webpackSkeleton, {
     "public/index.html",
     "public/manifest.json",
     "public/robots.txt",
-    "public/favicon.ico",
+    "public/favicon.svg",
+    "public/favicon-192.png",
+    "public/favicon-512.png",
     "src/serviceWorkerRegistration.ts",
+    "static",
   ],
   commands: {
     build: {
