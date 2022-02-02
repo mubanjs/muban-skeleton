@@ -34,7 +34,8 @@ export const GlobalRefresh = defineComponent({
     const updatedContent = ref(
       refs.child.component?.props.content?.replace(
         /##([a-z\d]+)##/gi,
-        (match, content) => `<span data-component="tooltip"><strong>${content}</strong></span>`,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        (_, content) => `<span data-component="tooltip"><strong>${content}</strong></span>`,
       ) ?? '',
     );
 

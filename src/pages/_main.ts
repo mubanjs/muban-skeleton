@@ -1,6 +1,6 @@
 export { appTemplate } from '../App.template';
 
-const context = require.context('.', true, /^(?:(?!_).*[\\/])?(?!_)[^\\/]+\.ts$/);
+const context = require.context('.', true, /^(?:(?!_).*[/])?(?!_)[^/]+\.ts$/);
 
 export const pages = Object.fromEntries(
   context
