@@ -15,6 +15,9 @@
     "patches",
     "mocks",
     "public",
+    "scripts",
+    "plop-templates",
+    "plopfile.ts",
     "tsconfig.tools.json"
   ],
   "config": {
@@ -36,7 +39,8 @@
     "storybook:build": "npm run apply-storybook-patches ; build-storybook -o ./dist/storybook",
     "typecheck": "run-s typecheck:*",
     "typecheck:main": "tsc --project tsconfig.json --noEmit --noUnusedLocals",
-    "typecheck:tools": "tsc --project tsconfig.tools.json --noEmit --noUnusedLocals"
+    "typecheck:tools": "tsc --project tsconfig.tools.json --noEmit --noUnusedLocals",
+    "plop": "node --loader ts-node/esm ./scripts/plop.ts"
   },
   "dependencies": {
     "@pota/authoring": "^1.0.0",
@@ -46,6 +50,11 @@
     "require-from-string": "^2.0.2"
   },
   "peerDependencies": {
+    "@mediamonks/muban-transition-component": "^1.0.0",
+    "@mediamonks/muban-storybook-addon-transition": "^1.0.0",
+    "@types/minimist": "^1.2.2",
+    "plop": "^3.0.5",
+    "ts-node": "^10.4.0",
     "@muban/storybook": "^7.0.0-alpha.19",
     "@muban/eslint-config": "^1.0.0-alpha.5",
     "@mediamonks/monck": "^1.0.6",
