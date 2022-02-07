@@ -52,6 +52,10 @@
   "peerDependencies": {
     "@mediamonks/muban-transition-component": "^1.0.0",
     "@mediamonks/muban-storybook-addon-transition": "^1.0.0",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addons": "^6.4.9",
     "@types/minimist": "^1.2.2",
     "plop": "^3.0.5",
     "ts-node": "^10.4.0",
