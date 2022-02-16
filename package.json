@@ -27,7 +27,7 @@
     "postinstall": "npx patch-package",
     "build": "pota build --output=dist/site",
     "build:preview": "npm run build -- --preview",
-    "dev": "pota dev --port 9000",
+    "dev": "pota dev --port 9000 --source-map=cheap-source-map",
     "docs:build": "vuepress build docs",
     "docs:deploy": "./deploy-docs.sh",
     "docs:dev": "vuepress dev docs",
