@@ -1,3 +1,3 @@
-# Muban Skeleton
+# Muban Skeleton [MOVED]
 
-Check out the [Guide](./guide/) to get started with the Muban Skeleton.
+The documentation has been moved to [Pota's Muban Combination](https://mediamonks.github.io/pota/combinations/muban/)
