@@ -1,0 +1,1 @@
+const a={key:"v-8daa1a0e",path:"/",title:"Muban Skeleton [MOVED]",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1647261297e3,contributors:[{name:"Paul",email:"p.simkevi@gmail.com",commits:2},{name:"Arjan van Wijk",email:"thanarie@gmail.com",commits:1}]},filePathRelative:"README.md"};export{a as data};
